@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -21,11 +21,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  # Job 1: Build the Project
+  build:
+    name: Build Project
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       # 1. Checkout the Repository
       - name: Checkout Repository
@@ -40,22 +39,51 @@ jobs:
       # 3. Install Dependencies and Build the Project
       - name: Build the Project
         run: |
-          make
-        # If your Makefile already handles changing directories, adjust accordingly
+          make  # Ensure your Makefile handles necessary build steps
+        working-directory: .  # Adjust if 'make' is in a different directory
 
       # 4. Create .nojekyll File in the 'www' Directory
       - name: Create .nojekyll File
         run: touch www/.nojekyll
+        working-directory: .  # Ensure this points to where 'www' is located
 
-      # 5. Upload Pages Artifact
+      # 5. Verify Build Output (Optional)
+      - name: Verify Build Output
+        run: ls -la ./www
+        working-directory: .
+
+    outputs:
+      build_dir: ./www  # Define output for subsequent jobs
+
+  # Job 2: Upload Pages Artifact
+  upload-artifact:
+    name: Upload Pages Artifact
+    runs-on: ubuntu-latest
+    needs: build  # This job depends on the 'build' job
+    steps:
+      # 1. Checkout the Repository (Required for upload-pages-artifact)
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # 2. Upload Pages Artifact
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: www  # Ensure this path points to your build output directory
+          path: ${{ needs.build.outputs.build_dir }}  # Use the output from the build job
 
-      # 6. Deploy to GitHub Pages (Only on Push Events)
+  # Job 3: Deploy to GitHub Pages
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: upload-artifact  # This job depends on the 'upload-artifact' job
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # 1. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        if: github.event_name == 'push'  # Ensures deployment only happens on push, not on manual runs
+        id: deployment
         uses: actions/deploy-pages@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use your PAT if necessary
+          token: ${{ secrets.DEPLOY_TOKEN }}  # Use your PAT if necessary
+
