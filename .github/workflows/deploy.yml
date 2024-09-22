@@ -1,12 +1,15 @@
 # .github/workflows/deploy.yml
 
-name: Build and Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
+  # Trigger the workflow on push to the main branch
   push:
     branches:
       - main
-  workflow_dispatch:  # Allows manual triggering from the Actions tab
+
+  # Allow manual triggering of the workflow from the Actions tab
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -32,21 +35,27 @@ jobs:
       - name: Setup Node.js Environment
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Ensure this matches your project's Node.js version
+          node-version: '16'  # Specify the Node.js version your project requires
 
       # 3. Install Dependencies and Build the Project
       - name: Build the Project
         run: |
           make
-        # If 'make' already handles cd-ing into 'lalolens', adjust accordingly
+        # If your Makefile already handles changing directories, adjust accordingly
 
       # 4. Create .nojekyll File in the 'www' Directory
       - name: Create .nojekyll File
         run: touch www/.nojekyll
 
-      # 5. Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # 5. Upload Pages Artifact
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./www  # Adjust this path to your build output directory
+          path: www  # Ensure this path points to your build output directory
+
+      # 6. Deploy to GitHub Pages (Only on Push Events)
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push'  # Ensures deployment only happens on push, not on manual runs
+        uses: actions/deploy-pages@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use your PAT if necessary
