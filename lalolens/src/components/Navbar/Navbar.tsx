@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 // Import the logo image
-import logo from '../assets/lalolenslogo.png'; // Adjust the path if necessary
+import logo from '../assets/lalolenslogo.svg'; // Adjust the path if necessary
 
 const Navbar: React.FC = () => {
   return (
