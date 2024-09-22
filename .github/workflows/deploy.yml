@@ -34,7 +34,7 @@ jobs:
       - name: Setup Node.js Environment
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Specify the Node.js version your project requires
+          node-version: '18'  # Specify the Node.js version your project requires
 
       # 3. Install Dependencies and Build the Project
       - name: Build the Project
@@ -85,5 +85,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v1
         with:
-          token: ${{ secrets.DEPLOY_TOKEN }}  # Use your PAT if necessary
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use your PAT if necessary
 
