@@ -67,7 +67,7 @@
 
 /* Active Link Styling */
 .navbar__links li a.active {
-  background-color: #007bff; /* Blue background for active link */
+  /* background-color: #007bff; Blue background for active link */
   color: #ffffff; /* White text for active link */
 }
 
