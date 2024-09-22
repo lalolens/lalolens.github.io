@@ -22,31 +22,11 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-cache
-          restore-keys: |
-            ${{ runner.os }}-npm-cache
-
-      - name: Enter app root folder
-        run: cd lalolens 
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build Project
-        run: npm run build
-
-      - name: Prevent Jekyll Processing
-        run: touch ../.nojekyll
-
-      # - name: Return to project root
-      #   run: cd .. 
+      - name: Build the Project
+        run: make
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ..
+          publish_dir: .  # Adjust if necessary
