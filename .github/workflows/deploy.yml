@@ -39,8 +39,8 @@ jobs:
       - name: Build Project
         run: npm run build
 
-      # - name: Prevent Jekyll Processing
-      #   run: touch ./dist/.nojekyll
+      - name: Prevent Jekyll Processing
+        run: touch ../.nojekyll
 
       # - name: Return to project root
       #   run: cd .. 
