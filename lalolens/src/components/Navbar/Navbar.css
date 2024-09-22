@@ -1,51 +1,103 @@
 /* src/components/Navbar.css */
 
+/* Reset default list styles */
+.navbar__links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Container */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between; /* Space between logo and links */
-  background-color: #ffffff; /* Navbar background color */
-  padding: 10px 20px; /* Adjust padding as needed */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+  background-color: #ffffff; /* White background */
+  padding: 15px 40px; /* Increased padding for spaciousness */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
+  position: sticky; /* Keeps navbar at the top on scroll */
+  top: 0;
+  z-index: 1000; /* Ensures navbar stays above other elements */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scroll effect */
 }
 
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent on scroll */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Enhanced shadow on scroll */
+}
+
+/* Logo Styling */
 .navbar__logo img {
-  height: 50px; /* Adjust the logo height as needed */
+  height: 60px; /* Uniform logo height */
   width: auto;
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
 }
 
+.navbar__logo img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Navigation Links Container */
 .navbar__links {
-  list-style: none;
   display: flex;
-  gap: 20px; /* Space between navigation links */
+  gap: 30px; /* Increased gap between navigation links */
 }
 
+/* Navigation Links Styling */
 .navbar__links li a {
   text-decoration: none;
-  color: #333333; /* Link text color */
-  font-weight: 500;
-  transition: color 0.3s ease;
+  color: #333333; /* Dark gray text for readability */
+  font-weight: 600; /* Slightly bolder for emphasis */
+  font-size: 16px; /* Increased font size for better visibility */
+  padding: 10px 15px; /* Increased padding for clickable area */
+  border-radius: 6px; /* Rounded corners for buttons */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+  display: flex;
+  align-items: center;
 }
 
+/* Hover Effects for Links */
 .navbar__links li a:hover {
-  color: #007bff; /* Link hover color */
+  background-color: #f0f0f0; /* Light gray background on hover */
+  color: #007bff; /* Blue text on hover */
+  transform: translateY(-2px); /* Slight upward movement on hover */
 }
 
-/* Responsive Design (Optional) */
+/* Active Link Styling */
+.navbar__links li a.active {
+  background-color: #007bff; /* Blue background for active link */
+  color: #ffffff; /* White text for active link */
+}
+
+/* Focus States for Accessibility */
+.navbar__links li a:focus {
+  outline: 2px dashed #007bff; /* Visible focus outline */
+  outline-offset: 4px;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
+    padding: 15px 20px; /* Adjust padding for smaller screens */
   }
 
   .navbar__links {
     flex-direction: column;
+    gap: 20px; /* Reduced gap for vertical layout */
     width: 100%;
-    gap: 10px;
   }
 
   .navbar__links li a {
-    padding: 10px 0;
-    width: 100%;
+    width: 100%; /* Full-width links on mobile */
+    text-align: center; /* Centered text */
+    padding: 12px 0; /* Increased vertical padding for touch devices */
+  }
+
+  .navbar__links li a:hover {
+    transform: translateY(0); /* Remove upward movement on small screens */
   }
 }
