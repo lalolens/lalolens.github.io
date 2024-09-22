@@ -42,8 +42,8 @@ jobs:
       # - name: Prevent Jekyll Processing
       #   run: touch ./dist/.nojekyll
 
-      - name: Return to project root
-        run: cd .. 
+      # - name: Return to project root
+      #   run: cd .. 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
