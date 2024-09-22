@@ -57,7 +57,7 @@ jobs:
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: .  # Upload the current directory (./lalolens/www) as the artifact
+          path: ./www  # Upload the current directory (./lalolens/www) as the artifact
 
   # Job 2: Deploy to GitHub Pages
   deploy:
