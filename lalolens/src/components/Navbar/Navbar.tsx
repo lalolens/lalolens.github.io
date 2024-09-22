@@ -3,10 +3,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
+// Import the logo image
+import logo from '../assets/images/logo.png'; // Adjust the path if necessary
+
 const Navbar: React.FC = () => {
   return (
     <nav className="navbar">
-      <ul>
+      <div className="navbar__logo">
+        <Link to="/">
+          <img src={logo} alt="Logo" />
+        </Link>
+      </div>
+      <ul className="navbar__links">
         <li>
           <Link to="/">Home</Link>
         </li>
