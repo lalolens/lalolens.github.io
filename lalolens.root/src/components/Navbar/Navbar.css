@@ -22,11 +22,13 @@
   z-index: 1000; /* Ensures navbar stays above other elements */
 
   background: linear-gradient(130deg, rgba(210, 240, 255, 1) 0%, rgba(190, 220, 255, 0.9) 60%, rgba(245, 90, 90, 0.2) 100%);
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   /* transition: background-color 0.3s ease, box-shadow 0.3s ease; Smooth transition for scroll effect */
 }
 
 /* Optional: Change navbar appearance on scroll */
+.navbar.scrolled {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 
 /* Logo Styling */
