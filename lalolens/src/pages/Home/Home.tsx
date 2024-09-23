@@ -1,11 +1,10 @@
 // src/components/Home.tsx
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Home.css';
 import profilePic from '../../assets/profile.jpg'; // Ensure you have a profile picture in this path
 
 const Home: React.FC = () => {
-  const location = useLocation();
   return (
     <section className="home">
       <img src={profilePic} alt="Your Name" className="profile-pic" />
