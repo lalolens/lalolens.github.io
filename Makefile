@@ -5,13 +5,13 @@
 all: install build
 
 install:
-	cd lalolens && npm install
+	cd lalolens.root && npm install
 
 build:
-	cd lalolens && npm run build
+	cd lalolens.root && npm run build
 
 clean:
-	cd lalolens && npm run clean
+	cd lalolens.root && npm run clean
 
 start:
-	cd lalolens && npm run dev
+	cd lalolens.root && npm run dev

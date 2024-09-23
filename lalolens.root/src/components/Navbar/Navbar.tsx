@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 // Import the logo image
-import logo from '../../assets/lalolenslogo.svg'; // Adjust the path if necessary
+import logo from '../../assets/lalolenslogo.svg'; // Ensure the path is correct
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -42,6 +42,9 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      {/* Skip to content link */}
+      <a href="#main-content" className="skip-link">Skip to content</a>
+      
       <div className="navbar__logo">
         <Link to="/">
           <img src={logo} alt="Logo" />
@@ -53,6 +56,8 @@ const Navbar: React.FC = () => {
         className={`navbar__toggle ${isOpen ? 'open' : ''}`}
         onClick={toggleMenu}
         aria-label="Toggle navigation"
+        aria-expanded={isOpen}
+        aria-controls="navbar-links"
       >
         <span className="bar"></span>
         <span className="bar"></span>
@@ -60,7 +65,7 @@ const Navbar: React.FC = () => {
       </button>
 
       {/* Navigation Links */}
-      <ul className={`navbar__links ${isOpen ? 'active' : ''}`}>
+      <ul className={`navbar__links ${isOpen ? 'active' : ''}`} id="navbar-links">
         <li>
           <Link
             to="/"

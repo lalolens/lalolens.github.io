@@ -1,0 +1,92 @@
+/* src/pages/DesignDemo.css */
+
+/* Page Background */
+.design-demo {
+    min-height: 100vh; /* Ensure the page covers the full viewport height */
+    padding: 0px 0px 0px 0px; /* Top padding to account for the sticky navbar */
+    background-color: #262626; /* Carbon-gray matte background */
+    /* color: hsl(0, 0%, 88%); Light gray text for readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the container horizontally */
+    align-items: flex-start; /* Center the container vertically */
+  }
+  
+  /* Container with Shadowed Background */
+  .design-demo__container {
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  .design-demo__bg_light {
+    background-color: #e5e8eb;
+  }
+
+  .design-demo__bg_dark {
+    background-color: #F38F94;
+  }
+
+  .design-demo__color_light {
+    color: #e5e8eb;
+  }
+
+  .design-demo__color_dark {
+    color: #23272B;
+  }
+
+  
+  /* Headings */
+  .design-demo__container h1,
+  .design-demo__container h2,
+  .design-demo__container h3,
+  .design-demo__container h4,
+  .design-demo__container h5,
+  .design-demo__container h6 {
+    /* color: #ffff; White color for headings to stand out */
+    margin-bottom: 20px;
+    /* Optional: Add a subtle border-bottom */
+    /* border-bottom: 2px solid rgba(214, 41, 64, 0.5); */
+    padding-bottom: 10px;
+  }
+  
+  /* Paragraphs */
+  .design-demo__container p {
+    /* color: #ffff; Light gray text */
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  
+  /* Additional Content Container */
+  .design-demo__additional-content {
+    margin-top: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .design-demo__container {
+      padding: 30px;
+    }
+  
+    .design-demo__container h1 {
+      font-size: 2rem;
+    }
+  
+    .design-demo__container p {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .design-demo__container {
+      padding: 20px;
+    }
+  
+    .design-demo__container h1 {
+      font-size: 1.5rem;
+    }
+  
+    .design-demo__container p {
+      font-size: 0.9rem;
+    }
+  }
+  

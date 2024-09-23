@@ -13,21 +13,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between; /* Space between logo and links */
-  background-color: #ffffff; /* White background */
+  /* background-color: ; White background */
   padding: 15px 40px; /* Increased padding for spaciousness */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  /* box-shadow: 0 2px 4px rgba(255, 255, 255, 0.9); Subtle shadow for depth */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
   position: sticky; /* Keeps navbar at the top on scroll */
   top: 0;
   z-index: 1000; /* Ensures navbar stays above other elements */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scroll effect */
+
+  background: linear-gradient(130deg, rgba(210, 240, 255, 1) 0%, rgba(190, 220, 255, 0.9) 60%, rgba(245, 90, 90, 0.2) 100%);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  /* transition: background-color 0.3s ease, box-shadow 0.3s ease; Smooth transition for scroll effect */
 }
 
 /* Optional: Change navbar appearance on scroll */
-.navbar.scrolled {
-  background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent on scroll */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Enhanced shadow on scroll */
-}
+
 
 /* Logo Styling */
 .navbar__logo img {
@@ -49,7 +49,6 @@
 /* Navigation Links Styling */
 .navbar__links li a {
   text-decoration: none;
-  color: #333333; /* Dark gray text for readability */
   font-weight: 600; /* Slightly bolder for emphasis */
   font-size: 16px; /* Increased font size for better visibility */
   padding: 10px 15px; /* Increased padding for clickable area */
@@ -177,4 +176,22 @@
     font-size: 14px; /* Smaller font size for tiny screens */
     padding: 10px 0; /* Adjusted padding */
   }
+}
+
+/* Skip Navigation Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #d62940; /* Red background */
+  color: #ffffff;
+  padding: 8px 16px;
+  z-index: 1001;
+  transition: top 0.3s ease;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.skip-link:focus {
+  top: 10px;
 }

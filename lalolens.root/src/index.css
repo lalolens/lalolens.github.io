@@ -53,6 +53,31 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+
+/* src/index.css */
+
+/* Apply to all headings */
+/* h1, h2, h3, h4, h5, h6 {
+  text-shadow:
+    2px 2px 4px #d62940,
+    4px 4px 8px #d62940;
+} */
+
+/* Apply to all paragraphs */
+/* p {
+  text-shadow:
+    1px 1px 3px #d62940,
+    2px 2px 6px #d62940;
+} */
+
+/* Apply to any other text elements as needed */
+/* span, strong, em, a {
+  text-shadow:
+    1px 1px 3px #d62940,
+    2px 2px 6px #d62940;
+} */
+
+
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
