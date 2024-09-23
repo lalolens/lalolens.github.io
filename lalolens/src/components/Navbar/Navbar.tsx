@@ -1,5 +1,5 @@
 // src/components/Navbar.tsx
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
@@ -8,8 +8,20 @@ import logo from '../../assets/lalolenslogo.svg'; // Adjust the path if necessar
 
 const Navbar: React.FC = () => {
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Function to toggle the hamburger menu
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Function to close the menu when a link is clicked
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
+  // Handle scroll to change navbar style
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -35,12 +47,26 @@ const Navbar: React.FC = () => {
           <img src={logo} alt="Logo" />
         </Link>
       </div>
-      <ul className="navbar__links">
+      
+      {/* Hamburger Menu Button */}
+      <button
+        className={`navbar__toggle ${isOpen ? 'open' : ''}`}
+        onClick={toggleMenu}
+        aria-label="Toggle navigation"
+      >
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
+      </button>
+
+      {/* Navigation Links */}
+      <ul className={`navbar__links ${isOpen ? 'active' : ''}`}>
         <li>
           <Link
             to="/"
             className={location.pathname === '/' ? 'active' : ''}
             aria-label="Home"
+            onClick={closeMenu}
           >
             Home
           </Link>
@@ -50,6 +76,7 @@ const Navbar: React.FC = () => {
             to="/about"
             className={location.pathname === '/about' ? 'active' : ''}
             aria-label="About Us"
+            onClick={closeMenu}
           >
             About
           </Link>
@@ -59,6 +86,7 @@ const Navbar: React.FC = () => {
             to="/projects"
             className={location.pathname === '/projects' ? 'active' : ''}
             aria-label="Our Projects"
+            onClick={closeMenu}
           >
             Projects
           </Link>
@@ -68,6 +96,7 @@ const Navbar: React.FC = () => {
             to="/contact"
             className={location.pathname === '/contact' ? 'active' : ''}
             aria-label="Contact Us"
+            onClick={closeMenu}
           >
             Contact
           </Link>

@@ -23,6 +23,7 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scroll effect */
 }
 
+/* Optional: Change navbar appearance on scroll */
 .navbar.scrolled {
   background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent on scroll */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Enhanced shadow on scroll */
@@ -77,7 +78,43 @@
   outline-offset: 4px;
 }
 
+/* Hamburger Menu Button Styling */
+.navbar__toggle {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.navbar__toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #333333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Rotate bars when menu is open */
+.navbar__toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar__toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
 /* Responsive Design */
+
+/* Medium Screens (Tablets) */
 @media (max-width: 992px) {
   .navbar {
     padding: 15px 30px; /* Reduced horizontal padding on medium screens */
@@ -93,17 +130,30 @@
   }
 }
 
+/* Small Screens (Mobile Devices) */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 20px; /* Further reduced padding for smaller screens */
+  /* Show Hamburger Menu */
+  .navbar__toggle {
+    display: flex; /* Show hamburger button */
   }
 
+  /* Hide Navigation Links by Default */
   .navbar__links {
-    flex-direction: column;
-    gap: 20px; /* Stack links vertically with reduced gap */
+    position: absolute;
+    top: 60px; /* Height of the navbar */
+    left: 0;
     width: 100%;
+    flex-direction: column;
+    background-color: #ffffff;
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Show Navigation Links When Active */
+  .navbar__links.active {
+    max-height: 300px; /* Adjust based on the number of links */
   }
 
   .navbar__links li a {
@@ -117,6 +167,7 @@
   }
 }
 
+/* Extra Small Screens (Very Small Mobile Devices) */
 @media (max-width: 480px) {
   .navbar__logo img {
     height: 50px; /* Slightly smaller logo on very small screens */
