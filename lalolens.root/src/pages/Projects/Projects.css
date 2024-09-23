@@ -22,7 +22,7 @@
 .project h2 {
   font-size: 24px;
   margin-bottom: 15px;
-  color: #1e90ff;
+  color: #0071EB;
 }
 
 .project p {
@@ -33,7 +33,7 @@
 .project a {
   display: inline-block;
   margin-top: 15px;
-  color: #1e90ff;
+  color: #0071EB;
   text-decoration: none;
   font-weight: bold;
 }

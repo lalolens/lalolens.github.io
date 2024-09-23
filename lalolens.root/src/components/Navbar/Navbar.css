@@ -13,23 +13,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between; /* Space between logo and links */
-  /* background-color: ; White background */
   padding: 15px 40px; /* Increased padding for spaciousness */
-  /* box-shadow: 0 2px 4px rgba(255, 255, 255, 0.9); Subtle shadow for depth */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
   position: sticky; /* Keeps navbar at the top on scroll */
   top: 0;
   z-index: 1000; /* Ensures navbar stays above other elements */
 
-  background: linear-gradient(130deg, rgba(210, 240, 255, 1) 0%, rgba(190, 220, 255, 0.9) 60%, rgba(245, 90, 90, 0.2) 100%);
-  /* transition: background-color 0.3s ease, box-shadow 0.3s ease; Smooth transition for scroll effect */
+  /* background: linear-gradient(130deg, rgba(210, 240, 255, 1) 0%, rgba(0, 86, 179, 0.8) 60%, rgba(245, 90, 90, 0.2) 100%); */
+  background-color: #ffffff;
+  /* background: linear-gradient(130deg, rgba(0, 113, 235, 1) 0%, rgba(230, 57, 70, 0.9) 50%, rgba(255, 114, 120, 0.7) 100%); */
+
 }
 
-/* Optional: Change navbar appearance on scroll */
 .navbar.scrolled {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 /* Logo Styling */
 .navbar__logo img {
@@ -50,33 +48,48 @@
 
 /* Navigation Links Styling */
 .navbar__links li a {
+  color: #595959;
   text-decoration: none;
   font-weight: 600; /* Slightly bolder for emphasis */
   font-size: 16px; /* Increased font size for better visibility */
   padding: 10px 15px; /* Increased padding for clickable area */
-  border-radius: 6px; /* Rounded corners for buttons */
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
   display: flex;
   align-items: center;
+  position: relative; /* Set position relative for the pseudo-element */
+}
+
+.navbar__links li a::after {
+  content: ''; /* Empty content for the underline */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px; /* Slightly below the text */
+  height: 2px; /* Adjust the thickness of the underline */
+  background-color: #0071EB; /* Color of the underline */
+  transform: scaleX(0); /* Start with the underline hidden */
+  transform-origin: left;
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.navbar__links li a:hover::after,
+.navbar__links li a.active::after {
+  transform: scaleX(1); /* Expand the underline on hover or active state */
 }
 
 /* Hover Effects for Links */
 .navbar__links li a:hover {
-  background-color: #f0f0f0; /* Light gray background on hover */
-  color: #007bff; /* Blue text on hover */
-  transform: translateY(-2px); /* Slight upward movement on hover */
+  /* color: #0071EB; Blue text on hover */
 }
 
 /* Active Link Styling */
 .navbar__links li a.active {
-  background-color: #007bff; /* Blue background for active link */
-  color: #ffffff; /* White text for active link */
+  color: #0071EB; /*Active link color */
 }
 
 /* Focus States for Accessibility */
 .navbar__links li a:focus {
-  outline: 2px dashed #007bff; /* Visible focus outline */
-  outline-offset: 4px;
+  /* outline: 2px dashed #0071EB; Visible focus outline */
+  /* outline-offset: 4px; */
 }
 
 /* Hamburger Menu Button Styling */
@@ -100,7 +113,6 @@
   transition: all 0.3s ease;
 }
 
-/* Rotate bars when menu is open */
 .navbar__toggle.open .bar:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }

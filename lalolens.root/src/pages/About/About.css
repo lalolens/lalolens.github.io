@@ -14,7 +14,7 @@
 .about h2 {
   font-size: 28px;
   margin-top: 40px;
-  color: #1e90ff;
+  color: #0071EB;
 }
 
 .about p,
@@ -29,5 +29,5 @@
 }
 
 .about strong {
-  color: #333;
+  color: #595959;
 }

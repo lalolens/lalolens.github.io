@@ -2,7 +2,7 @@
 .contact {
   text-align: center;
   padding: 100px 20px;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 
 .contact h1 {
@@ -15,10 +15,31 @@
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto 20px;
+  padding: 2rem; 
 }
 
+.contact__logos {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Adjust the gap between logos as needed */
+  margin-top: 20px; /* Space above the logos */
+}
+
+.contact__logo {
+  width: 40px; /* Adjust logo size */
+  height: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth hover effects */
+}
+
+.contact__logo:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  opacity: 0.8; /* Slight opacity change on hover */
+  cursor: pointer;
+}
+
+/* Maintain the original link styles for any other links */
 .contact a {
-  color: #1e90ff;
+  color: #0071EB;
   text-decoration: none;
 }
 
