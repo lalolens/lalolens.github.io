@@ -31,7 +31,9 @@
 
 /* Logo Styling */
 .navbar__logo img {
-  height: 60px; /* Uniform logo height */
+  border: 1px solid yellow;
+  /* margin-top: 25px; */
+  height: 45px; /* Uniform logo height */
   width: auto;
   transition: transform 0.3s ease; /* Smooth transition for hover effect */
 }
