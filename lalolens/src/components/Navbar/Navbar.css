@@ -67,7 +67,7 @@
 
 /* Active Link Styling */
 .navbar__links li a.active {
-  /* background-color: #007bff; Blue background for active link */
+  background-color: #007bff; /* Blue background for active link */
   color: #ffffff; /* White text for active link */
 }
 
@@ -78,16 +78,31 @@
 }
 
 /* Responsive Design */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 15px 30px; /* Reduced horizontal padding on medium screens */
+  }
+
+  .navbar__links {
+    gap: 20px; /* Reduced gap between links */
+  }
+
+  .navbar__links li a {
+    font-size: 15px; /* Slightly smaller font on medium screens */
+    padding: 8px 12px; /* Adjusted padding */
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    padding: 15px 20px; /* Adjust padding for smaller screens */
+    padding: 15px 20px; /* Further reduced padding for smaller screens */
   }
 
   .navbar__links {
     flex-direction: column;
-    gap: 20px; /* Reduced gap for vertical layout */
+    gap: 20px; /* Stack links vertically with reduced gap */
     width: 100%;
   }
 
@@ -99,5 +114,16 @@
 
   .navbar__links li a:hover {
     transform: translateY(0); /* Remove upward movement on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar__logo img {
+    height: 50px; /* Slightly smaller logo on very small screens */
+  }
+
+  .navbar__links li a {
+    font-size: 14px; /* Smaller font size for tiny screens */
+    padding: 10px 0; /* Adjusted padding */
   }
 }
