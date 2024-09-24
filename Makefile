@@ -3,38 +3,23 @@
 
 # Default target that builds the project
 all: install build
-
 # Install project dependencies
 install:
 	cd lalolens.root && npm install
-
 # Build the project
 build:
 	# Build the project
-build:
-	@if [ -d "/var/www/html/lalolens/" ]; then \
-		echo "Directory exists. Deleting /var/www/html/lalolens/"; \
-		sudo rm -rf /var/www/html/lalolens/; \
-	else \
-		echo "Directory does not exist. Skipping deletion."; \
-	fi
 	cd lalolens.root && npm run build 
-	sudo mkdir -p /var/www/html/lalolens
-	sudo cp -r www/html/lalolens/* /var/www/html/lalolens
-
 # Start the development server
 start:
 	cd lalolens.root && npm run dev
 
-
 # Run the Codespaces Makefile
 codespace:
 	$(MAKE) -f Makefiles/Makefile.codespace $(MAKECMDGOALS)
-
 # Run the Local Makefile
 local:
 	$(MAKE) -f Makefiles/Makefile.local $(MAKECMDGOALS)
-
 
 # Install Apache (auto-detect Codespaces or Local)
 apache-install:
@@ -42,37 +27,44 @@ apache-install:
 	sudo apt update
 	sudo apt install -y apache2
 
+apache-set-wwwroot:
+	@if [ -d "/var/www/html/lalolens/" ]; then \
+		echo "Directory exists. Deleting /var/www/html/lalolens/"; \
+		sudo rm -rf /var/www/html/lalolens/; \
+	else \
+		echo "Directory does not exist. Skipping deletion."; \
+	fi
+	sudo mkdir -p /var/www/html/lalolens
+	sudo cp -r lalolens.root/dist/* /var/www/html/lalolens
+
 # Ensure the correct permissions for the Codespaces environment
 apache-auth:
 	@echo "Setting permissions for /var/www/html/lalolens..."
 	sudo chown -R www-data:www-data /var/www/html/lalolens
 	sudo chmod -R 775 /var/www/html/lalolens
 
+apache-init: apache-install apache-set-wwwroot apache-auth
 
 # Start both app and Apache for local environment
-start-localhost: all apache-install apache-auth
+start-local-apache-server: all apache-init
 	sudo IS_CODESPACE=false ./scripts/setup-apcache-environment
 	$(MAKE) -f Makefiles/Makefile.local apache-start
-
-# Start both app and Apache for Codespaces environment
-start-codespace-localhost: all apache-install apache-auth
-	sudo IS_CODESPACE=true ./scripts/setup-apache-environment
-	$(MAKE) -f Makefiles/Makefile.codespace apache-start
-
 # Stop both app and Apache for local environment
-stop-localhost: 
+stop-local-apache-server: 
 	$(MAKE) -f Makefiles/Makefile.local apache-stop
-
-# Stop both app and Apache for Codespaces environment
-stop-codespace-localhost: 
-	$(MAKE) -f Makefiles/Makefile.codespace apache-stop
-
 # Restart both app and Apache for local environment
-restart-localhost: 
+restart-local-apache-server: 
 	$(MAKE) -f Makefiles/Makefile.local apache-restart
 
+# Start both app and Apache for Codespaces environment
+start-codespace-apahe-server: all apache-init
+	sudo IS_CODESPACE=true ./scripts/setup-apache-environment
+	$(MAKE) -f Makefiles/Makefile.codespace apache-start
+# Stop both app and Apache for Codespaces environment
+stop-codespace-apache-server: 
+	$(MAKE) -f Makefiles/Makefile.codespace apache-stop
 # Restart both app and Apache for Codespaces environment
-restart-codespace-localhost: 
+restart-codespace-apache-server: 
 	$(MAKE) -f Makefiles/Makefile.codespace apache-restart
 
 # Display usage information

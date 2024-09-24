@@ -26,7 +26,7 @@
       name: Build and Upload Artifact
       runs-on: ubuntu-latest
       outputs:
-        build_dir: www  # Define the build directory as an output
+        build_dir: lalolens.root/dist  # Define the build directory as an output
       steps:
         # 1. Checkout the Repository
         - name: Checkout Repository
@@ -46,23 +46,23 @@
         # 4. Create .nojekyll File in the 'www' Directory
         - name: Create .nojekyll File
           run: sudo touch .nojekyll
-          working-directory: /var/www/html/lalolens  # Ensure this points to where 'www' is located
+          working-directory: lalolens.root/dist # Ensure this points to where 'www' is located
 
         # 5. Create 404.html for GitHub Pages Routing
         - name: Create 404.html for GitHub Pages
-          run: sudo cp /var/www/html/lalolens/index.html /var/www/html/lalolens/404.html
-          working-directory: /var/www/html/lalolens
+          run: sudo cp index.html 404.html
+          working-directory: lalolens.root/dist
 
         # 5. Verify Build Output (Optional)
         - name: Verify Build Output
           run: ls -la .
-          working-directory: /var/www/html/lalolens
+          working-directory: lalolens.root/dist
 
         # 6. Upload Pages Artifact
         - name: Upload Pages Artifact
           uses: actions/upload-pages-artifact@v1
           with:
-            path: /var/www/html/lalolens  # Upload the current directory (./lalolens/www) as the artifact
+            path: lalolens.root/dist  # Upload the current directory (./lalolens/www) as the artifact
 
     # Job 2: Deploy to GitHub Pages
     deploy:
