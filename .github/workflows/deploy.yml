@@ -48,6 +48,11 @@
           run: sudo touch .nojekyll
           working-directory: /var/www/html/lalolens  # Ensure this points to where 'www' is located
 
+        # 5. Create 404.html for GitHub Pages Routing
+      - name: Create 404.html for GitHub Pages
+        run: sudo cp /var/www/html/lalolens/index.html /var/www/html/lalolens/404.html
+        working-directory: /var/www/html/lalolens
+        
         # 5. Verify Build Output (Optional)
         - name: Verify Build Output
           run: ls -la .

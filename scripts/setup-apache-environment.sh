@@ -47,17 +47,31 @@ sudo bash -c "cat <<EOL > $APACHE_CONF
         Require all granted
     </Directory>
 
+    # Rewrite rule to handle client-side routing with React Router
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteBase /
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . /index.html [L]
+    </IfModule>
+
     ErrorLog \${APACHE_LOG_DIR}/error.log
     CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 EOL"
 
-# Set the global ServerName directive to suppress the Apache warning
+# Set the global ServerName directive to suppress warnings
 echo "Setting the global ServerName directive to suppress warnings..."
 if ! grep -q "ServerName" /etc/apache2/apache2.conf; then
     echo "ServerName localhost" | sudo tee -a /etc/apache2/apache2.conf
     echo "ServerName directive added to /etc/apache2/apache2.conf"
 fi
+
+# Enable necessary Apache modules
+echo "Enabling necessary Apache modules..."
+sudo a2enmod rewrite
 
 # Enable the new site
 echo "Enabling Apache site..."
