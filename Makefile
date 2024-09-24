@@ -20,7 +20,7 @@ build:
 	fi
 	cd lalolens.root && npm run build 
 	sudo mkdir -p /var/www/html/lalolens
-	sudo cp -r var/www/html/lalolens/* /var/www/html/lalolens
+	sudo cp -r www/html/lalolens/* /var/www/html/lalolens
 
 # Start the development server
 start:

@@ -4,12 +4,13 @@
 PROJECT_NAME="lalolens"
 PROJECT_DIR="/var/www/html/$PROJECT_NAME"
 APACHE_CONF="/etc/apache2/sites-available/$PROJECT_NAME.conf"
+HTACCESS_FILE="$PROJECT_DIR/.htaccess"
 
 echo "Setting up your project..."
 
 # Check if the user has sudo privileges
 if [ "$EUID" -ne 0 ]; then
-    echo "Please run as root (e.g., sudo ./setup)"
+    echo "Please run as root (e.g., sudo ./setup-apache-environment.sh)"
     exit 1
 fi
 
@@ -46,7 +47,7 @@ sudo bash -c "cat <<EOL > $APACHE_CONF
         AllowOverride All
         Require all granted
 
-        # Rewrite rules for handling client-side routing
+        # Enable mod_rewrite but avoid using RewriteBase here
         RewriteEngine On
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteCond %{REQUEST_FILENAME} !-d
@@ -56,6 +57,16 @@ sudo bash -c "cat <<EOL > $APACHE_CONF
     ErrorLog \${APACHE_LOG_DIR}/error.log
     CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
+EOL"
+
+# Create the .htaccess file for client-side routing
+echo "Creating .htaccess file for client-side routing..."
+sudo bash -c "cat <<EOL > $HTACCESS_FILE
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
 EOL"
 
 # Set the global ServerName directive to suppress warnings
@@ -88,15 +99,6 @@ fi
 if ! grep -q "$PROJECT_NAME.local" /etc/hosts; then
     echo "127.0.0.1 $PROJECT_NAME.local" | sudo tee -a /etc/hosts
     echo "Added $PROJECT_NAME.local to /etc/hosts."
-fi
-
-# Verify that assets are being served correctly
-echo "Verifying build output and checking asset paths..."
-if [ -d "$PROJECT_DIR/assets" ]; then
-    echo "Assets directory exists. Verifying contents:"
-    ls -la "$PROJECT_DIR/assets"
-else
-    echo "Assets directory not found. Please check your build configuration."
 fi
 
 echo "Setup complete! You can access your project at http://$PROJECT_NAME.local"
