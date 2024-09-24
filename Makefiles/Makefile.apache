@@ -1,0 +1,77 @@
+.PHONY: apache-start apache-stop apache-restart apache-auth
+
+apache-init: apache-install apache-set-wwwroot apache-auth
+
+# Install Apache (auto-detect Codespaces or Local)
+apache-install:
+	@echo "Installing Apache server..."
+	sudo apt update
+	sudo apt install -y apache2
+	@echo "Apache server installation completed."
+
+apache-set-wwwroot:
+	@if [ -d "/var/www/html/lalolens/" ]; then \
+		echo "Directory /var/www/html/lalolens/ already exists. Deleting it..."; \
+		sudo rm -rf /var/www/html/lalolens/; \
+	else \
+		echo "Directory /var/www/html/lalolens/ does not exist. Proceeding..."; \
+	fi
+	@echo "Creating /var/www/html/lalolens and copying project files..."
+	sudo mkdir -p /var/www/html/lalolens
+	sudo cp -r lalolens.root/dist/* /var/www/html/lalolens
+	@echo "Project files have been set up at /var/www/html/lalolens."
+
+# Ensure the correct permissions for the Codespaces environment
+apache-auth:
+	@echo "Setting permissions for /var/www/html/lalolens..."
+	sudo chown -R www-data:www-data /var/www/html/lalolens
+	sudo chmod -R 775 /var/www/html/lalolens
+	@echo "Permissions set successfully."
+
+# Start the Apache server for Codespaces
+apache-service-start: apache-init
+	@echo "Starting Apache server using 'service'..."
+	sudo service apache2 start
+	@echo "Apache server started."
+
+# Stop the Apache server
+apache-service-stop:
+	@echo "Stopping Apache server using 'service'..."
+	sudo service apache2 stop
+	@echo "Apache server stopped."
+
+# Restart the Apache server
+apache-service-restart: apache-init
+	@echo "Restarting Apache server using 'service'..."
+	sudo service apache2 restart
+	@echo "Apache server restarted."
+
+# Reload Apache server configuration
+apache-service-reload: apache-init
+	@echo "Reloading Apache server configuration using 'service'..."
+	sudo service apache2 reload
+	@echo "Apache server configuration reloaded."
+
+# Start the Apache server for local environment
+apache-systemctl-start: apache-init
+	@echo "Starting Apache server using 'systemctl'..."
+	sudo systemctl start apache2
+	@echo "Apache server started with systemctl."
+
+# Stop the Apache server
+apache-systemctl-stop:
+	@echo "Stopping Apache server using 'systemctl'..."
+	sudo systemctl stop apache2
+	@echo "Apache server stopped with systemctl."
+
+# Restart the Apache server
+apache-systemctl-restart: apache-init
+	@echo "Restarting Apache server using 'systemctl'..."
+	sudo systemctl restart apache2
+	@echo "Apache server restarted with systemctl."
+
+# Reload Apache server configuration
+apache-systemctl-reload: apache-init
+	@echo "Reloading Apache server configuration using 'systemctl'..."
+	sudo systemctl reload apache2
+	@echo "Apache server configuration reloaded with systemctl."

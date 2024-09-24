@@ -1,96 +1,154 @@
 # Master Makefile
 .PHONY: all codespaces local install build start apache-install setup start-localhost start-codespace-localhost usage
 
+
+############################################################################################
+# VARIABLES
+############################################################################################
+APACHE_MAKEFILE = Makefiles/Makefile.apache
+MAKE_CUSTOM = $(MAKE) -f
+WWWROOT = lalolens.root
+############################################################################################
+
+
+############################################################################################
+# Vite Commands
+############################################################################################
 # Default target that builds the project
 all: install build
 # Install project dependencies
 install:
-	cd lalolens.root && npm install
+	@echo "Installing project dependencies..."
+	cd $(WWWROOT) && npm install
+	@echo ""
+
 # Build the project
 build:
-	# Build the project
-	cd lalolens.root && npm run build 
+	@echo "Building the project..."
+	cd $(WWWROOT) && npm run build 
+	@echo "Build completed successfully."
+	@echo ""
+
 # Start the development server
 start:
-	cd lalolens.root && npm run dev
+	@echo "Starting the development server..."
+	cd $(WWWROOT) && npm run dev
+	@echo "Development server is now running."
+	@echo ""
+############################################################################################
 
-# Run the Codespaces Makefile
-codespace:
-	$(MAKE) -f Makefiles/Makefile.codespace $(MAKECMDGOALS)
-# Run the Local Makefile
-local:
-	$(MAKE) -f Makefiles/Makefile.local $(MAKECMDGOALS)
 
-# Install Apache (auto-detect Codespaces or Local)
-apache-install:
-	@echo "Installing Apache..."
-	sudo apt update
-	sudo apt install -y apache2
-
-apache-set-wwwroot:
-	@if [ -d "/var/www/html/lalolens/" ]; then \
-		echo "Directory exists. Deleting /var/www/html/lalolens/"; \
-		sudo rm -rf /var/www/html/lalolens/; \
-	else \
-		echo "Directory does not exist. Skipping deletion."; \
-	fi
-	sudo mkdir -p /var/www/html/lalolens
-	sudo cp -r lalolens.root/dist/* /var/www/html/lalolens
-
-# Ensure the correct permissions for the Codespaces environment
-apache-auth:
-	@echo "Setting permissions for /var/www/html/lalolens..."
-	sudo chown -R www-data:www-data /var/www/html/lalolens
-	sudo chmod -R 775 /var/www/html/lalolens
-
-apache-init: apache-install apache-set-wwwroot apache-auth
-
+############################################################################################
+# Local Testing
+############################################################################################
+### LOCAL
 # Start both app and Apache for local environment
-start-local-apache-server: all apache-init
-	sudo IS_CODESPACE=false ./scripts/setup-apcache-environment
-	$(MAKE) -f Makefiles/Makefile.local apache-start
+start-local-apache-server: all
+	@echo "Starting Apache server for the local environment..."
+	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-systemctl-start
+	@echo "Local Apache server started successfully."
+	@echo ""
+
 # Stop both app and Apache for local environment
 stop-local-apache-server: 
-	$(MAKE) -f Makefiles/Makefile.local apache-stop
-# Restart both app and Apache for local environment
-restart-local-apache-server: 
-	$(MAKE) -f Makefiles/Makefile.local apache-restart
+	@echo "Stopping Apache server for the local environment..."
+	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-systemctl-stop
+	@echo "Local Apache server stopped successfully."
+	@echo ""
 
+# Restart both app and Apache for local environment
+restart-local-apache-server: all
+	@echo "Restarting Apache server for the local environment..."
+	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-systemctl-restart
+	@echo "Local Apache server restarted successfully."
+	@echo ""
+# Restart both app and Apache for local environment
+reload-local-apache-server: all
+	@echo "Reloading Apache server for the local environment..."
+	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-systemctl-reload
+	@echo "Local Apache server reloaded successfully."
+	@echo ""
+
+### CODESPACE LOCAL 
 # Start both app and Apache for Codespaces environment
-start-codespace-apahe-server: all apache-init
-	sudo IS_CODESPACE=true ./scripts/setup-apache-environment
-	$(MAKE) -f Makefiles/Makefile.codespace apache-start
+start-codespace-apache-server: all
+	@echo "Starting Apache server in Codespaces..."
+	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-service-start
+	@echo "Apache server in Codespaces started successfully."
+	@echo ""
+
 # Stop both app and Apache for Codespaces environment
 stop-codespace-apache-server: 
-	$(MAKE) -f Makefiles/Makefile.codespace apache-stop
+	@echo "Stopping Apache server in Codespaces..."
+	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-service-stop
+	@echo "Apache server in Codespaces stopped successfully."
+	@echo ""
+
 # Restart both app and Apache for Codespaces environment
-restart-codespace-apache-server: 
-	$(MAKE) -f Makefiles/Makefile.codespace apache-restart
+restart-codespace-apache-server: all
+	@echo "Restarting Apache server in Codespaces..."
+	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-service-restart
+	@echo "Apache server in Codespaces restarted successfully."
+	@echo ""
+
+# Reload Apache configuration in Codespaces environment
+reload-codespace-apache-server: all
+	@echo "Reloading Apache configuration in Codespaces..."
+	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-service-reload
+	@echo "Apache configuration in Codespaces reloaded successfully."
+	@echo ""
+############################################################################################
+
 
 # Display usage information
 usage:
-	@echo "Usage: make [codespaces|local|setup|usage|start-localhost|start-codespace-localhost|stop-localhost|stop-codespace-localhost|restart-localhost|restart-codespace-localhost]"
+	@echo "============================== Makefile Usage =============================="
+	@echo "Usage: make [command]"
 	@echo ""
-	@echo "Commands:"
-	@echo "  usage                      - Learn to use this makefile"
-	@echo "  install                    - Install project dependencies"
-	@echo "  build                      - Build the project"
-	@echo "  start                      - Start the development server"
-	@echo "  apache-install             - Install Apache"
-	@echo "  setup                      - Set up the project files and Apache configuration"
-	@echo "  start-localhost            - Start the app and Apache in the local environment"
-	@echo "  start-codespace-localhost  - Start the app and Apache in Codespaces"
-	@echo "  stop-localhost             - Stop the app and Apache in the local environment"
-	@echo "  stop-codespace-localhost   - Stop the app and Apache in Codespaces"
-	@echo "  restart-localhost          - Restart the app and Apache in the local environment"
-	@echo "  restart-codespace-localhost - Restart the app and Apache in Codespaces"
+	@echo "Available Commands:"
+	@echo "------------------------------------------------------------------------------------"
+	@echo "  all                        - Build the entire project (runs 'install' and 'build')."
+	@echo "  install                    - Install all project dependencies using npm."
+	@echo "  build                      - Build the project using npm."
+	@echo "  start                      - Start the development server using npm."
+	@echo ""
+	@echo "Local Testing Commands:"
+	@echo "------------------------------------------------------------------------------------"
+	@echo "  start-local-apache-server  - Start the project and Apache server in the local environment."
+	@echo "  stop-local-apache-server   - Stop the Apache server in the local environment."
+	@echo "  restart-local-apache-server - Restart the project and Apache server in the local environment."
+	@echo ""
+	@echo "Codespaces Commands:"
+	@echo "------------------------------------------------------------------------------------"
+	@echo "  start-codespace-apache-server  - Start the project and Apache server in the Codespaces environment."
+	@echo "  stop-codespace-apache-server   - Stop the Apache server in the Codespaces environment."
+	@echo "  restart-codespace-apache-server - Restart the Apache server in the Codespaces environment."
+	@echo "  reload-codespace-apache-server - Reload Apache configuration in Codespaces."
+	@echo ""
+	@echo "Apache Commands (Apache Installation and Setup):"
+	@echo "------------------------------------------------------------------------------------"
+	@echo "  apache-install             - Install Apache server."
+	@echo "  apache-set-wwwroot         - Set the Apache web root to the project."
+	@echo "  apache-auth                - Set proper permissions for Apache in the Codespaces environment."
+	@echo ""
+	@echo "Advanced Apache Commands (Manage Apache Service):"
+	@echo "------------------------------------------------------------------------------------"
+	@echo "  apache-service-start       - Start the Apache server using 'service'."
+	@echo "  apache-service-stop        - Stop the Apache server using 'service'."
+	@echo "  apache-service-restart     - Restart the Apache server using 'service'."
+	@echo "  apache-service-reload      - Reload the Apache server configuration using 'service'."
+	@echo "  apache-systemctl-start     - Start the Apache server using 'systemctl'."
+	@echo "  apache-systemctl-stop      - Stop the Apache server using 'systemctl'."
+	@echo "  apache-systemctl-restart   - Restart the Apache server using 'systemctl'."
+	@echo "  apache-systemctl-reload    - Reload the Apache server configuration using 'systemctl'."
 	@echo ""
 	@echo "Examples:"
-	@echo "  make codespaces apache-start      - Start Apache in Codespaces"
-	@echo "  make local apache-start           - Start Apache on the local environment"
-	@echo "  make start-localhost              - Start the project and Apache locally"
-	@echo "  make start-codespace-localhost    - Start the project and Apache in Codespaces"
-	@echo "  make stop-localhost               - Stop the project and Apache locally"
-	@echo "  make stop-codespace-localhost     - Stop the project and Apache in Codespaces"
-	@echo "  make restart-localhost            - Restart the project and Apache locally"
-	@echo "  make restart-codespace-localhost  - Restart the project and Apache in Codespaces"
+	@echo "------------------------------------------------------------------------------------"
+	@echo "  make install                     - Install project dependencies."
+	@echo "  make build                       - Build the project."
+	@echo "  make start                       - Start the development server."
+	@echo "  make start-local-apache-server   - Start Apache server locally."
+	@echo "  make restart-codespace-apache-server - Restart Apache in Codespaces."
+	@echo ""
+	@echo "==========================================================================="
+	@echo "Use 'make usage' to view this information again."
