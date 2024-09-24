@@ -10,13 +10,17 @@ install:
 
 # Build the project
 build:
+	# Build the project
+build:
 	@if [ -d "/var/www/html/lalolens/" ]; then \
 		echo "Directory exists. Deleting /var/www/html/lalolens/"; \
 		sudo rm -rf /var/www/html/lalolens/; \
 	else \
 		echo "Directory does not exist. Skipping deletion."; \
 	fi
-	cd lalolens.root && sudo npm run build 
+	cd lalolens.root && npm run build 
+	sudo mkdir -p /var/www/html/lalolens
+	sudo cp -r var/www/html/lalolens/* /var/www/html/lalolens
 
 # Start the development server
 start:
@@ -41,18 +45,18 @@ apache-install:
 # Ensure the correct permissions for the Codespaces environment
 apache-auth:
 	@echo "Setting permissions for /var/www/html/lalolens..."
-	sudo chown -R $(whoami):www-data /var/www/html/lalolens
+	sudo chown -R www-data:www-data /var/www/html/lalolens
 	sudo chmod -R 775 /var/www/html/lalolens
 
 
 # Start both app and Apache for local environment
 start-localhost: all apache-install apache-auth
-	sudo IS_CODESPACE=false ./scripts/setup-apcache-environment.sh
+	sudo IS_CODESPACE=false ./scripts/setup-apcache-environment
 	$(MAKE) -f Makefiles/Makefile.local apache-start
 
 # Start both app and Apache for Codespaces environment
 start-codespace-localhost: all apache-install apache-auth
-	sudo IS_CODESPACE=true ./scripts/setup-apache-environment.sh
+	sudo IS_CODESPACE=true ./scripts/setup-apache-environment
 	$(MAKE) -f Makefiles/Makefile.codespace apache-start
 
 # Stop both app and Apache for local environment

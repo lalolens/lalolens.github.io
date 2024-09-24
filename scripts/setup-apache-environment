@@ -65,6 +65,10 @@ if ! grep -q "ServerName" /etc/apache2/apache2.conf; then
     echo "ServerName directive added to /etc/apache2/apache2.conf"
 fi
 
+# Disable the default Apache site to avoid conflicts
+echo "Disabling the default Apache site..."
+sudo a2dissite 000-default.conf
+
 # Enable necessary Apache modules
 echo "Enabling necessary Apache modules..."
 sudo a2enmod rewrite
