@@ -16,7 +16,7 @@ build:
 	else \
 		echo "Directory does not exist. Skipping deletion."; \
 	fi
-	cd lalolens.root && npm run build
+	cd lalolens.root && sudo npm run build 
 
 # Start the development server
 start:
