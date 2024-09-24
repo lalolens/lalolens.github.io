@@ -45,7 +45,7 @@
 
         # 4. Create .nojekyll File in the 'www' Directory
         - name: Create .nojekyll File
-          run: touch .nojekyll
+          run: sudo touch .nojekyll
           working-directory: /var/www/html/lalolens  # Ensure this points to where 'www' is located
 
         # 5. Verify Build Output (Optional)
