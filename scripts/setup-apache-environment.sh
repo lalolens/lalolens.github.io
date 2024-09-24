@@ -30,7 +30,7 @@ sudo cp -r ./lalolens.root/public/* "$PROJECT_DIR"
 
 # Set permissions for Apache to access the project files
 echo "Setting permissions for Apache..."
-sudo chown -R $(whoami):www-data "$PROJECT_DIR"
+sudo chown -R www-data:www-data "$PROJECT_DIR"
 sudo chmod -R 755 "$PROJECT_DIR"
 
 # Create an Apache Virtual Host configuration
@@ -51,6 +51,13 @@ sudo bash -c "cat <<EOL > $APACHE_CONF
     CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 EOL"
+
+# Set the global ServerName directive to suppress the Apache warning
+echo "Setting the global ServerName directive to suppress warnings..."
+if ! grep -q "ServerName" /etc/apache2/apache2.conf; then
+    echo "ServerName localhost" | sudo tee -a /etc/apache2/apache2.conf
+    echo "ServerName directive added to /etc/apache2/apache2.conf"
+fi
 
 # Enable the new site
 echo "Enabling Apache site..."

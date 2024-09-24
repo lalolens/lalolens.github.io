@@ -47,7 +47,7 @@ apache-auth:
 
 # Start both app and Apache for local environment
 start-localhost: all apache-install apache-auth
-	sudo -E env "IS_CODESPACE=false" ./scripts/setup-apache-environment.sh
+	sudo -E env "IS_CODESPACE=false" ./scripts/setup-apcache-environment.sh
 	$(MAKE) -f Makefiles/Makefile.local apache-start
 
 # Start both app and Apache for Codespaces environment
