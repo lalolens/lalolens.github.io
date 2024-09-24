@@ -45,17 +45,13 @@ sudo bash -c "cat <<EOL > $APACHE_CONF
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
-    </Directory>
 
-    # Rewrite rule to handle client-side routing with React Router
-    <IfModule mod_rewrite.c>
+        # Rewrite rules for handling client-side routing
         RewriteEngine On
-        RewriteBase /
-        RewriteRule ^index\.html$ - [L]
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteCond %{REQUEST_FILENAME} !-d
         RewriteRule . /index.html [L]
-    </IfModule>
+    </Directory>
 
     ErrorLog \${APACHE_LOG_DIR}/error.log
     CustomLog \${APACHE_LOG_DIR}/access.log combined
@@ -88,6 +84,15 @@ fi
 if ! grep -q "$PROJECT_NAME.local" /etc/hosts; then
     echo "127.0.0.1 $PROJECT_NAME.local" | sudo tee -a /etc/hosts
     echo "Added $PROJECT_NAME.local to /etc/hosts."
+fi
+
+# Verify that assets are being served correctly
+echo "Verifying build output and checking asset paths..."
+if [ -d "$PROJECT_DIR/assets" ]; then
+    echo "Assets directory exists. Verifying contents:"
+    ls -la "$PROJECT_DIR/assets"
+else
+    echo "Assets directory not found. Please check your build configuration."
 fi
 
 echo "Setup complete! You can access your project at http://$PROJECT_NAME.local"
