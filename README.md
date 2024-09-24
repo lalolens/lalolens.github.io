@@ -1,6 +1,3 @@
-### `README.md`
-
-```markdown
 # LaloLens Project Deployment Guide
 
 ## Overview
@@ -37,7 +34,7 @@ The project uses a Makefile to automate the build process. When you run the buil
 To build the project, simply run:
 ```bash
 make build
-```
+
 This command will:
 - Check if the `/var/www/html/lalolens/` directory exists and delete it if necessary.
 - Run the Vite build process to generate the output files.
