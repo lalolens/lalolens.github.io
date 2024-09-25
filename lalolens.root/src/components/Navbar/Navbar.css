@@ -98,8 +98,8 @@
 .navbar__toggle .bar {
   height: 3px;
   width: 100%;
-  /* background-color: #333333; */
-  border-radius: 2px;
+  background-color: #333333;
+  /* border-radius: 2px; */
   transition: all 0.3s ease;
 }
 
