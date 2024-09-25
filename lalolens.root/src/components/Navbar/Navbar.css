@@ -66,7 +66,7 @@
   right: 0;
   bottom: -2px; /* Slightly below the text */
   height: 2px; /* Adjust the thickness of the underline */
-  background-color: #AD0054; /* Color of the underline */
+  background-color: #ffff; /* Color of the underline */
   transform: scaleX(0); /* Start with the underline hidden */
   transform-origin: left;
   transition: transform 0.3s ease; /* Smooth transition */
@@ -79,7 +79,7 @@
 
 /* Active Link Styling */
 .navbar__links li a.active {
-  color: #AD0054; /*Active link color */
+  color: #ffff; /*Active link color */
 }
 
 /* Hamburger Menu Button Styling */
@@ -147,7 +147,8 @@
     left: 0;
     width: 100%;
     flex-direction: column;
-    background-color: #ffffff;
+    align-items: space-evenly;
+    background-color: #AD0054;
     max-height: 0;
     overflow: hidden;
     transition: bottom 0.3s ease, max-height 0.3s ease;
@@ -158,11 +159,14 @@
   /* Show Navigation Links When Active */
   .navbar__links.active {
     bottom: 0; /* Slide up to be visible */
-    max-height: 80vh; /* Adjust height based on content */
-    padding: 10px 0; /* Add padding for better spacing */
+    max-height: 60vh; /* Adjust height based on content */
+    height:100%;
+    /* padding: 50px 0; Add padding for better spacing */
   }
 
   .navbar__links li a {
+    color: #ffffff;
+
     width: 100%; /* Full-width links on mobile */
     text-align: center; /* Centered text */
     padding: 12px 0; /* Increased vertical padding for touch devices */
