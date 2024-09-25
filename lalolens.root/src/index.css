@@ -50,10 +50,10 @@ button {
 button:hover {
   border-color: #0071EB;
 }
-button:focus,
+/* button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */
 
 
 /* src/index.css */
