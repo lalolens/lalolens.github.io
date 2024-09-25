@@ -151,9 +151,9 @@
     /* Adjust opacity using rgba */
     /* background-color: #3D9970  ;  */
     /* background-color: #004A8F ;  */
-    /* background-color: #28A745;  */
+    background-color: #28A745; 
     /* background-color: #FF5733   ;  */
-    background-color: #00A5CF       ; 
+    /* background-color: #00A5CF       ;  */
     /* background-color: rgba(0, 113, 235, 1);  */
     /* background-color: rgba(173, 0, 84, 1); */
     max-height: 0;
