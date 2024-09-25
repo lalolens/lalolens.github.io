@@ -151,8 +151,8 @@
     /* Adjust opacity using rgba */
     /* background-color: rgba(0, 113, 235, 1);  */
     /* background-color: rgba(0, 113, 235, 0.95);  */
-    /* background-color: rgba(173, 0, 84, 1); */
-    background-color: rgba(173, 0, 84, 0.95);
+    background-color: rgba(173, 0, 84, 1);
+    /* background-color: rgba(173, 0, 84, 0.95); */
     max-height: 0;
     overflow: hidden;
     transition: bottom 0.3s ease, max-height 0.3s ease;
