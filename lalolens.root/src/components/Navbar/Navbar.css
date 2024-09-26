@@ -125,7 +125,7 @@
   }
 
   .navbar__links {
-    gap: 20px; /* Reduced gap between links */
+    gap: 3rem; /* Reduced gap between links */
   }
 
   .navbar__links li a {
