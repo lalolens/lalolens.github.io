@@ -1,12 +1,11 @@
 # Master Makefile
 .PHONY: all codespaces local install build start apache-install setup start-localhost start-codespace-localhost usage
 
-
 ############################################################################################
 # 										VARIABLES									       #
 ############################################################################################
-APACHE_MAKEFILE = Makefiles/Makefile.apache
-MAKE_CUSTOM = $(MAKE) -f
+# APACHE_MAKEFILE = Makefiles/Makefile.apache
+MAKE_APACHE = $(MAKE) -f Makefiles/Makefile.apache
 WWWROOT = lalolens.root
 ############################################################################################
 
@@ -41,33 +40,33 @@ start:
 
 
 ############################################################################################
-# Local Testing
+# Local Testing																			   #
 ############################################################################################
 ### LOCAL
 # Start both app and Apache for local environment
 start-local-apache-server: all
 	@echo "Starting Apache server for the local environment..."
-	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-systemctl-start
+	$(MAKE_APACHE) apache-systemctl-start
 	@echo "Local Apache server started successfully."
 	@echo ""
 
 # Stop both app and Apache for local environment
 stop-local-apache-server: 
 	@echo "Stopping Apache server for the local environment..."
-	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-systemctl-stop
+	$(MAKE_APACHE) apache-systemctl-stop
 	@echo "Local Apache server stopped successfully."
 	@echo ""
 
 # Restart both app and Apache for local environment
 restart-local-apache-server: all
 	@echo "Restarting Apache server for the local environment..."
-	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-systemctl-restart
+	$(MAKE_APACHE) apache-systemctl-restart
 	@echo "Local Apache server restarted successfully."
 	@echo ""
 # Restart both app and Apache for local environment
 reload-local-apache-server: all
 	@echo "Reloading Apache server for the local environment..."
-	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-systemctl-reload
+	$(MAKE_APACHE) apache-systemctl-reload
 	@echo "Local Apache server reloaded successfully."
 	@echo ""
 
@@ -75,28 +74,28 @@ reload-local-apache-server: all
 # Start both app and Apache for Codespaces environment
 start-codespace-apache-server: all
 	@echo "Starting Apache server in Codespaces..."
-	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-service-start
+	$(MAKE_APACHE) apache-service-start
 	@echo "Apache server in Codespaces started successfully."
 	@echo ""
 
 # Stop both app and Apache for Codespaces environment
 stop-codespace-apache-server: 
 	@echo "Stopping Apache server in Codespaces..."
-	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-service-stop
+	$(MAKE_APACHE) apache-service-stop
 	@echo "Apache server in Codespaces stopped successfully."
 	@echo ""
 
 # Restart both app and Apache for Codespaces environment
 restart-codespace-apache-server: all
 	@echo "Restarting Apache server in Codespaces..."
-	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-service-restart
+	$(MAKE_APACHE) apache-service-restart
 	@echo "Apache server in Codespaces restarted successfully."
 	@echo ""
 
 # Reload Apache configuration in Codespaces environment
 reload-codespace-apache-server: all
 	@echo "Reloading Apache configuration in Codespaces..."
-	$(MAKE_CUSTOM) $(APACHE_MAKEFILE) apache-service-reload
+	$(MAKE_APACHE) apache-service-reload
 	@echo "Apache configuration in Codespaces reloaded successfully."
 	@echo ""
 ############################################################################################

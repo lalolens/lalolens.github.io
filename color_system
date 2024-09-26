@@ -1,6 +1,7 @@
 Color Palette
 ---
-* blue: #0071EB
-  * triadic: #71EB00, #EB0071 -> #AD0054 (accessible), 
-dark: #595959
-* 
+
+
+main theme color: #0071EB
+interactive color color:#0071EB
+text color: #595959
