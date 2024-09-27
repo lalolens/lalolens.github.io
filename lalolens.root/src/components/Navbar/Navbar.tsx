@@ -41,6 +41,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
+    <>
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       {/* Skip to content link */}
       <a href="#main-content" className="skip-link">Skip to content</a>
@@ -52,7 +53,7 @@ const Navbar: React.FC = () => {
       </div>
       
       {/* Hamburger Menu Button */}
-      <button
+      <button 
         className={`navbar__toggle ${isOpen ? 'open' : ''}`}
         onClick={toggleMenu}
         aria-label="Toggle navigation"
@@ -108,6 +109,10 @@ const Navbar: React.FC = () => {
         </li>
       </ul>
     </nav>
+    
+    {/* Backdrop */}
+    {isOpen && <div className="backdrop" onClick={closeMenu}></div>}
+    </>
   );
 };
 
