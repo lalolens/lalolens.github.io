@@ -1,0 +1,57 @@
+/* src/pages/MainContent.css */
+
+.main-container {
+    width: 100%;
+    height: 100%; /* Ensures the main container fills its parent height */
+    padding: 0;
+    margin: 0;
+    overflow: hidden; /* Prevents the main container itself from scrolling */
+}
+  
+.main-content {
+    height: 100%;
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 0;
+    margin: 0;
+    background-color: #ffffff; /* Optional background color */
+    /* margin: 0 2rem; */
+    padding: 80px 20px;
+    /* border: 1px solid blue; */
+}
+
+/* Custom niche scrollbar styles without visible track */
+.main-content::-webkit-scrollbar {
+    width: 9px; /* Slightly wider to make the thumb more prominent */
+  }
+  
+  .main-content::-webkit-scrollbar-track {
+    background: transparent; /* Make the track invisible */
+  }
+  
+  .main-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #004080, #0071EB); /* Darker shades transitioning into the theme color */
+    border-radius: 8px; /* Rounded thumb for a smooth appearance */
+    box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), /* Subtle inner light for depth */
+                0 2px 8px rgba(0, 0, 0, 0.4); /* Outer shadow for lift effect */
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  }
+  
+  .main-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #005bb5, #0071EB); /* Darker theme color gradient on hover */
+    transform: scale(1.1); /* Slightly enlarge thumb on hover */
+  }
+  
+  .main-content::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(135deg, #003366, #005bb5); /* Darker gradient when active */
+    transform: scale(1.05); /* Slightly shrink back when clicked */
+  }
+
+
+  /* Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Custom niche scrollbar styles without visible track */
+  .main-content::-webkit-scrollbar {
+    display: none;
+  }
+}
+  

@@ -1,111 +1,59 @@
-/* src/components/Navbar.css */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+/* src/components/Navbar/Navbar.css */
 
-/* Reset default list styles */
-.navbar__links {
-  list-style: none;
-  display: flex;
-  margin: 0;
+/* General Styles for Navbar */
+.navbar-container {
+  width: 100%;
+  height: 100%;
   padding: 0;
+  margin: 0;
 }
 
-/* Navbar Container */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Space between logo and links */
-  padding: 15px 40px; /* Increased padding for spaciousness */
-  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
-  position: sticky; /* Keeps navbar at the top on scroll */
-  top: 0;
-  z-index: 1000; /* Ensures navbar stays above other elements */
+  justify-content: space-between;
   background-color: #ffffff;
-  /* gap: 6rem; */
+  color: #595959;
+  padding: 10px 20px;
+  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.2),  
+              0 4px 6px -2px rgba(0, 0, 0, 0.1),
+              0 1px 0px rgba(255, 255, 255, 0.2) inset;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), border-bottom 0.4s ease;
 }
 
-.navbar.scrolled {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Adjust the size of the SVG when inside the navbar */
+/* Logo Styling */
 .navbar__logo img {
-  height: 50px; /* Adjust height */
+  height: 50px;
   width: auto;
   transition: transform 0.3s ease;
 }
 
-/* Add a hover effect */
 .navbar__logo img:hover {
   transform: scale(1.1);
 }
 
-/* Navigation Links Container */
-.navbar__links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12rem; /* Increased gap between navigation links */
-  width: 100%;
-}
-
-/* Navigation Links Styling */
-.navbar__links li a {
-  color: #595959;
-  text-decoration: none;
-  font-weight: 700; /* Slightly bolder for emphasis */
-  font-size: 1.15rem; /* Increased font size for better visibility */
-  padding: 10px 15px; /* Increased padding for clickable area */
-  display: flex;
-  align-items: center;
-  position: relative; /* Set position relative for the pseudo-element */
-}
-
-.navbar__links li a::after {
-  content: ''; /* Empty content for the underline */
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -2px; /* Slightly below the text */
-  height: 2px; /* Adjust the thickness of the underline */
-  background-color: #0071EB; /* Color of the underline */
-  transform: scaleX(0); /* Start with the underline hidden */
-  transform-origin: left;
-  transition: transform 0.3s ease; /* Smooth transition */
-}
-
-.navbar__links li a:hover::after,
-.navbar__links li a.active::after {
-  transform: scaleX(1); /* Expand the underline on hover or active state */
-}
-
-/* Active Link Styling */
-.navbar__links li a.active {
-  color: #0071EB; /*Active link color */
-}
-
-/* Hamburger Menu Button Styling */
+/* Navbar Toggle Button (For Mobile) */
 .navbar__toggle {
-  display: none; /* Hidden by default */
+  display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 25px;
-  height: 20px;
+  height: 24px;
+  width: 30px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
 }
 
 .navbar__toggle .bar {
-  height: 3px;
   width: 100%;
-  background-color: #333333;
-  /* border-radius: 2px; */
+  height: 3px;
+  background-color: #595959;
   transition: all 0.3s ease;
 }
-
 .navbar__toggle.open .bar:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
+  transform: rotate(45deg) translate(7px, 7px);
 }
 
 .navbar__toggle.open .bar:nth-child(2) {
@@ -113,62 +61,84 @@
 }
 
 .navbar__toggle.open .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* Light backdrop styling */
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* Link Styling in Navbar */
+.navbar__links {
   width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.7); /* Light semi-transparent white */
-  z-index: 500; /* Ensure it's behind the navbar but above other elements */
-  transition: opacity 0.3s ease;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
 }
 
-/* Responsive Design */
-
-/* Medium Screens (Tablets) */
-@media (max-width: 992px) {
-  .navbar {
-    padding: 15px 30px; /* Reduced horizontal padding on medium screens */
-  }
-
-  .navbar__links {
-    gap: 3rem; /* Reduced gap between links */
-  }
-
-  .navbar__links li a {
-    font-size: 15px; /* Slightly smaller font on medium screens */
-    padding: 8px 12px; /* Adjusted padding */
-  }
+.navbar__links li a {
+  color: #595959;
+  position: relative;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 10px 15px;
+  transition: background-color 0.3s;
 }
 
-/* Small Screens (Mobile Devices) */
+/* Underline Animation for Links */
+.navbar__links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: #0071EB;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.navbar__links li a:hover::after,
+.navbar__links li a.active::after {
+  transform: scaleX(1);
+}
+
+.navbar__links li a.active {
+  color: #0071EB;
+}
+
+/* Skip Link (Accessibility) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: -999px;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 10px;
+  left: 10px;
+}
+
+/* Mobile Styles */
 @media (max-width: 768px) {
-  /* Show Hamburger Menu */
   .navbar__toggle {
-    display: flex; /* Show hamburger button */
+    display: flex;
   }
 
-  /* Hide Navigation Links by Default, Positioned off the bottom */
+  /* Hide links by default on mobile */
   .navbar__links {
     position: fixed;
-    bottom: -100%; /* Start off-screen at the bottom */
+    bottom: -100%; /* Start off-screen */
     left: 0;
     width: 100%;
     flex-direction: column;
-    align-items: space-evenly;
-    /* Adjust opacity using rgba */
-    /* background-color: #3D9970  ;  */
-    /* background-color: #004A8F ;  */
-    /* background-color: #66CCFF ;  */
-    /* background-color: #FF5733   ;  */
-    background-color: #0071EB; 
-    /* background-color: rgba(0, 113, 235, 1);  */
-    /* background-color: rgba(173, 0, 84, 1); */
+    /* align-items: center; */
+    background-color: #0071EB;
+    padding: 20px 0;
     max-height: 0;
     overflow: hidden;
     transition: bottom 0.3s ease, max-height 0.3s ease;
@@ -176,45 +146,27 @@
     z-index: 1000;
   }
 
-  /* Show Navigation Links When Active */
   .navbar__links.active {
-    bottom: 0; /* Slide up to be visible */
-    max-height: 60vh; /* Adjust height based on content */
-    height:100%;
-    /* padding: 50px 0; Add padding for better spacing */
+    bottom: 0; /* Slide up into view */
+    max-height: 60vh;
+    height: 100%;
+    color: #ffffff;
+  }
+
+  .navbar__links li {
+    text-align: center;
+    padding: 15px 0;
   }
 
   .navbar__links li a {
     color: #ffffff;
     font-size: 1.4rem;
-    width: 100%; /* Full-width links on mobile */
-    text-align: center; /* Centered text */
-    padding: 12px 0; /* Increased vertical padding for touch devices */
+    width: 100%;
+    transition: color 0.3s ease;
   }
 
   .navbar__links li a:hover {
-    transform: translateY(0); /* Remove upward movement on small screens */
-  }
-
-  .navbar__links li a::after {
-    background-color: #ffffff; /* Color of the underline */
-  }
-  
-  /* Active Link Styling */
-  .navbar__links li a.active {
-    color: #ffffff; /*Active link color */
-  }
-}
-
-/* Extra Small Screens (Very Small Mobile Devices) */
-@media (max-width: 480px) {
-  .navbar__logo img {
-    height: 50px; /* Slightly smaller logo on very small screens */
-  }
-
-  .navbar__links li a {
-    font-size: 20px; /* Smaller font size for tiny screens */
-    padding: 10px 0; /* Adjusted padding */
+    color: #ffffff; /* Slightly darker shade on hover */
   }
   .navbar__links li a::after {
     background-color: #ffffff; /* Color of the underline */
@@ -226,20 +178,15 @@
   }
 }
 
-/* Skip Navigation Link */
-.skip-link {
-  position: absolute;
-  top: -40px;
+/* Backdrop for mobile menu */
+.backdrop {
+  position: fixed;
+  top: 90px;
   left: 0;
-  background: #d62940; /* Red background */
-  color: #ffffff;
-  padding: 8px 16px;
-  z-index: 1001;
-  transition: top 0.3s ease;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.skip-link:focus {
-  top: 10px;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }

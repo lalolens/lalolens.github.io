@@ -1,10 +1,18 @@
-// src/components/About.tsx
+// src/components/MainContent/MainContentComponent.tsx
+/**
+ * MainContentComponent.tsx
+ * Represents the main content to be displayed in the Main Content pane.
+ */
+
 import React from 'react';
-import './About.css';
+import './About.css'; // Import the CSS file for styling
+import '../MainContent.css';
 
 const About: React.FC = () => {
   return (
-    <section className="about">
+    <main className="main-container">
+      <div className="main-content">
+      <div className="about">
       <h1>About Me</h1>
 
       <h2>Professional Summary</h2>
@@ -32,7 +40,9 @@ const About: React.FC = () => {
       <p><strong>Data & Analytics:</strong> Snowflake, Tableau, Google Analytics</p>
       <p><strong>Tools & Methodologies:</strong> Git, Figma, REST API Development, Agile, TDD</p>
       <p><strong>Languages:</strong> Fluent in English and Spanish</p>
-    </section>
+    </div>
+      </div>
+    </main>
   );
 };
 

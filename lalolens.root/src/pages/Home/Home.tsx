@@ -1,8 +1,18 @@
-// src/components/Home.tsx
+// src/components/MainContent/MainContentComponent.tsx
+/**
+ * MainContentComponent.tsx
+ * Represents the main content to be displayed in the Main Content pane.
+ */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css';
+
 import profilePic from '../../assets/profile.jpg'; // Ensure you have a profile picture in this path
+import './Home.css'; // Import the CSS file for styling
+import '../MainContent.css';
+
+
+
 
 
 const Hero: React.FC = () => {
@@ -33,14 +43,19 @@ const GetInTouch: React.FC = () => {
   );
 }
 
+
 const Home: React.FC = () => {
   return (
-    <section className="home">
-      <Hero />
-      <GetInTouch />
-
-    </section>
+    <main className="main-container">
+      <div className="main-content">
+      <div className="home">
+        <Hero />
+        <GetInTouch />
+      </div>
+      </div>
+    </main>
   );
 };
+
 
 export default Home;

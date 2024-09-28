@@ -1,6 +1,12 @@
-// src/components/Projects.tsx
+// src/components/MainContent/MainContentComponent.tsx
+/**
+ * MainContentComponent.tsx
+ * Represents the main content to be displayed in the Main Content pane.
+ */
+
 import React from 'react';
 import './Projects.css';
+import '../MainContent.css';
 
 interface Project {
   id: number;
@@ -71,9 +77,11 @@ const projects: Project[] = [
   },
 ];
 
-const Projects: React.FC = () => {
+const About: React.FC = () => {
   return (
-    <section className="projects">
+    <main className="main-container">
+      <div className="main-content">
+      <div className="projects">
       <h1>Professional Projects</h1>
       {projects.map((project) => (
         <div key={project.id} className="project">
@@ -86,8 +94,10 @@ const Projects: React.FC = () => {
           )}
         </div>
       ))}
-    </section>
+    </div>
+      </div>
+    </main>
   );
 };
 
-export default Projects;
+export default About;

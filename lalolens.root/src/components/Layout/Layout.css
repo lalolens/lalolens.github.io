@@ -1,0 +1,116 @@
+/* src/components/Layout/Layout.css */
+
+/* Define CSS variables */
+:root {
+    --full-height: 100vh;
+    --full-width: 100%;
+    
+    /* Navbar sizes */
+    --navbar-height: 85px;  /* Standard height for the Navbar */
+    
+    /* Sidebar sizes */
+    --sidebar-width: 100px; /* Standard width for the Sidebar */
+    
+    /* Footer sizes */
+    --footer-height: 0px;   /* Height for the Footer */
+  
+    /* Mobile sizes */
+    --mobile-navbar-height: 85px; /* Height for mobile Navbar */
+    --mobile-sidebar-expanded-width: 100px; /* Expanded width for mobile Sidebar */
+  
+    /* Calculated heights for main content and sidebar */
+    --adjusted-main-height: calc(var(--full-height) - var(--navbar-height) - var(--footer-height));
+    --adjusted-sidebar-height: calc(var(--full-height) - var(--navbar-height) - var(--footer-height));
+    
+    /* Calculated mobile heights */
+    --mobile-adjusted-main-height: calc(var(--full-height) - var(--mobile-navbar-height) - var(--footer-height));
+    --mobile-adjusted-sidebar-height: calc(var(--full-height) - var(--mobile-navbar-height));
+}
+
+.layout-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: var(--full-height);
+}
+
+.navbar-pane {
+    flex: 0 0 auto;
+    height: var(--navbar-height);
+    background-color: #ffffff;
+    transition: height 0.3s ease;
+}
+
+.sidebar-pane {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    width: 0; /* Sidebar hidden by default */
+    height: var(--adjusted-sidebar-height);
+    background-color: #ffffff;
+    border-right: 1px solid black;
+    overflow: hidden; /* Ensure contents don't spill out */
+    transition: width 0.3s ease;
+    z-index: 100;
+}
+
+.sidebar-pane.visible {
+    width: var(--sidebar-width); /* Show the sidebar when visible */
+}
+
+.sidebar-pane.expanded {
+    width: var(--sidebar-expanded-width); /* Optional expanded state */
+}
+
+.main-content-pane {
+    margin-left: 0; /* Full width by default */
+    flex: 1;
+    background-color: white;
+    height: var(--adjusted-main-height);
+    z-index: 1;
+    transition: margin-left 0.3s ease;
+}
+
+.main-content-pane.with-sidebar {
+    margin-left: var(--sidebar-width); /* Adjust when sidebar is visible */
+}
+
+.main-content-pane.expanded {
+    margin-left: var(--sidebar-expanded-width); /* Adjust for expanded state */
+}
+
+.footer-pane {
+    flex: 0 0 var(--footer-height);
+    background-color: #ffffff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .navbar-pane {
+        height: var(--mobile-navbar-height);
+    }
+  
+    .sidebar-pane {
+        width: 0; /* Hidden by default on mobile */
+        left: -var(--mobile-sidebar-expanded-width); /* Move it off-screen */
+        top: var(--mobile-navbar-height);
+        height: var(--mobile-adjusted-sidebar-height);
+        transition: left 0.3s ease, width 0.3s ease; /* Transition to smoothly handle mobile toggle */
+    }
+  
+    .sidebar-pane.visible {
+        width: var(--mobile-sidebar-expanded-width); /* Set width when visible */
+        left: 0; /* Slide in from the left */
+    }
+
+    .main-content-pane {
+        margin-left: 0;
+        width: 100%;
+        height: var(--mobile-adjusted-main-height);
+        padding: 10px;
+    }
+
+    .footer-pane {
+        height: var(--mobile-footer-height);
+    }
+}

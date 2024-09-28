@@ -1,20 +1,83 @@
-/* src/App.css */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+/* src/App.css
+ * Global styles for the main application using CSS variables.
+ */
 
-body {
+ @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+/* Define global CSS variables */
+:root {
+  --full-width: 100%;                /* Full width of the viewport */
+  --full-height: 100%;               /* Full height of the viewport */
+  --font-family: 'Roboto', Arial, sans-serif;  /* Global font family */
+  --box-sizing: border-box;          /* Global box-sizing */
+}
+
+html, body {
   margin: 0;
-  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* background: linear-gradient(130deg, rgba(210, 240, 255, 1) 0%, rgba(190, 220, 255, 0.9) 60%, rgba(245, 90, 90, 0.2) 100%); */
-  color:#595959;
+  padding: 0;
+  height: var(--full-height); /* Use variable for full height */
+  width: var(--full-width);   /* Use variable for full width */
+  box-sizing: var(--box-sizing); /* Use variable for box-sizing */
+  font-family: var(--font-family); /* Use variable for font family */
 }
 
-.content {
-  min-height: calc(100vh - 70px);
+#root {
+  height: var(--full-height); /* Use variable for full height */
 }
 
-footer {
-  background-color: #ffffff;
-  color: #ffffff;
-  text-align: center;
-  padding: 15px 0;
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: var(--full-height); /* Use variable for full viewport height */
+  overflow: hidden; /* Prevents overflow issues */
 }
+
+
+/* src/pages/Home/Home.css
+ * Styles for the Home component (Landing Page) with a solid background color.
+ */
+
+
+/* src/components/MainContent/MainContentComponent.css */
+
+.main-container {
+  width: 100%;
+  height: 100%; /* Ensures the main container fills its parent height */
+  overflow: hidden; /* Prevents the main container itself from scrolling */
+}
+
+.main-content {
+  height: 100%;
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding: 10px;
+  background-color: #f8f8f8; /* Optional background color */
+}
+
+/* Custom niche scrollbar styles without visible track */
+.main-content::-webkit-scrollbar {
+  width: 14px; /* Slightly wider to make the thumb more prominent */
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: transparent; /* Make the track invisible */
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #004080, #0071EB); /* Darker shades transitioning into the theme color */
+  border-radius: 8px; /* Rounded thumb for a smooth appearance */
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2), /* Subtle inner light for depth */
+              0 2px 8px rgba(0, 0, 0, 0.4); /* Outer shadow for lift effect */
+  transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #005bb5, #0071EB); /* Darker theme color gradient on hover */
+  transform: scale(1.1); /* Slightly enlarge thumb on hover */
+}
+
+.main-content::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(135deg, #003366, #005bb5); /* Darker gradient when active */
+  transform: scale(1.05); /* Slightly shrink back when clicked */
+}
+

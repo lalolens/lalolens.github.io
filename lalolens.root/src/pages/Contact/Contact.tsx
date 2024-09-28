@@ -1,6 +1,7 @@
 // src/components/Contact.tsx
 import React from 'react';
 import './Contact.css';
+import '../MainContent.css';
 
 // Import your logo images (use correct paths for your logo files)
 import emailLogo from '../../assets/material-icons/mail.svg'; // Replace with actual path to your email logo
@@ -10,7 +11,9 @@ import githubLogo from '../../assets/social-icons/github-logo.svg'; // Replace w
 
 const Contact: React.FC = () => {
   return (
-    <section className="contact">
+    <main className="main-container">
+      <div className="main-content">
+      <div className="contact">
       <h1>Contact Me</h1>
       <p>
         I'm always open to discussing new opportunities, innovative ideas, or potential collaborations. Feel free to reach out via email or connect with me on LinkedIn and GitHub.
@@ -26,8 +29,9 @@ const Contact: React.FC = () => {
           <img src={githubLogo} alt="GitHub" className="contact__logo" />
         </a>
       </div>
-    </section>
-
+      </div>
+      </div>
+    </main>
   );
 };
 
