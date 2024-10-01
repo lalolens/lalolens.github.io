@@ -13,6 +13,8 @@ import Contact from './pages/Contact/Contact';
 import Projects from './pages/Projects/Projects'
 import { GlobalProvider } from './context/GlobalContext';
 
+import './App.css';
+
 const App: React.FC = () => {
   return (
     <GlobalProvider>
@@ -23,10 +25,6 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/projects" element={<Projects />} />
-            {/* <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/design" element={<DesignDemo />} />  */}
-            
             {/* Add more routes as needed */}
           </Routes>
         </Layout>

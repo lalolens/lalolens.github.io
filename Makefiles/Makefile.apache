@@ -19,6 +19,7 @@ apache-set-wwwroot:
 	@echo "Creating /var/www/html/lalolens and copying project files..."
 	sudo mkdir -p /var/www/html/lalolens
 	sudo cp -r lalolens.root/dist/* /var/www/html/lalolens
+	
 	@echo "Project files have been set up at /var/www/html/lalolens."
 
 # Ensure the correct permissions for the Codespaces environment

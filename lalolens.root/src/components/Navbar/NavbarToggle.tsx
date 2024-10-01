@@ -1,5 +1,6 @@
 // src/components/Navbar/NavbarToggle.tsx
 import React from 'react';
+import './Navbar.css';
 
 interface NavbarToggleProps {
   isOpen: boolean;
@@ -7,10 +8,17 @@ interface NavbarToggleProps {
 }
 
 const NavbarToggle: React.FC<NavbarToggleProps> = ({ isOpen, toggleMenu }) => {
+
+  console.log('isOpen in NavbarToggle:', isOpen);
+
   return (
     <button
+      type="button"
       className={`navbar__toggle ${isOpen ? 'open' : ''}`}
-      onClick={toggleMenu}
+      onClick={() => {
+        console.log('Button clicked, toggling menu');
+        toggleMenu()
+      }}
       aria-label="Toggle navigation"
       aria-expanded={isOpen}
     >

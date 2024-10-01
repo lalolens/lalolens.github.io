@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 // import { toggleSidebarVisibility } from '../../context/globalActions';
 import logo from '../../assets/lalolenslogo.svg';
 
+import './Navbar.css';
+
 const NavbarLogo: React.FC = () => {
   // const dispatch = useGlobalDispatch();
 

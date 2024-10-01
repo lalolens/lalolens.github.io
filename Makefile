@@ -46,6 +46,7 @@ start:
 # Start both app and Apache for local environment
 start-local-apache-server: all
 	@echo "Starting Apache server for the local environment..."
+	sudo IS_CODESPACE=false . ./scripts/setup-apcache-environment
 	$(MAKE_APACHE) apache-systemctl-start
 	@echo "Local Apache server started successfully."
 	@echo ""
@@ -74,6 +75,7 @@ reload-local-apache-server: all
 # Start both app and Apache for Codespaces environment
 start-codespace-apache-server: all
 	@echo "Starting Apache server in Codespaces..."
+	sudo IS_CODESPACE=true . ./scripts/setup-apcache-environment
 	$(MAKE_APACHE) apache-service-start
 	@echo "Apache server in Codespaces started successfully."
 	@echo ""

@@ -39,21 +39,25 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  height: 24px;
-  width: 30px;
+  height: 20px;
+  width: 25px;
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+
+  transition: all 0.3s  ease;
 }
 
 .navbar__toggle .bar {
   width: 100%;
   height: 3px;
-  background-color: #595959;
+  background-color: #333333;
   transition: all 0.3s ease;
 }
 .navbar__toggle.open .bar:nth-child(1) {
-  transform: rotate(45deg) translate(7px, 7px);
+  transform: rotate(45deg) translate(6px, 6px) !important;
 }
 
 .navbar__toggle.open .bar:nth-child(2) {
@@ -61,7 +65,7 @@
 }
 
 .navbar__toggle.open .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* Link Styling in Navbar */
@@ -80,7 +84,8 @@
   font-weight: 700;
   font-size: 1.15rem;
   padding: 10px 15px;
-  transition: background-color 0.3s;
+  
+  /* transition: background-color 0.3s; */
 }
 
 /* Underline Animation for Links */
@@ -181,12 +186,11 @@
 /* Backdrop for mobile menu */
 .backdrop {
   position: fixed;
-  top: 90px;
+  top: 85px;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.7); /* Light semi-transparent white */
   z-index: 500;
-  opacity: 1;
   transition: opacity 0.3s ease;
 }
