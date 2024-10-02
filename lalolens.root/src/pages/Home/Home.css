@@ -25,16 +25,35 @@
   padding: 2rem;
 }
 
-.cta-button {
+
+
+.interactive-container {
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.interactive-button {
   background-color: #0071EB;
-  color: white;
+  color: #ffffff !important;
   padding: 15px 30px;
   font-size: 18px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  min-width: 120px;
+  margin: 15px 5px;
+  transition: transform 0.2s ease;
 }
 
-.cta-button:hover {
-  background-color: #0071EB;
+.interactive-button:hover {
+  animation: jump 0.5s ease;
+}
+
+@keyframes jump {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
 }
