@@ -7,6 +7,7 @@
 # APACHE_MAKEFILE = Makefiles/Makefile.apache
 MAKE_APACHE = $(MAKE) -f Makefiles/Makefile.apache
 WWWROOT = lalolens.root
+CHATBOT_DIR = lalolens.services/chatbot
 ############################################################################################
 
 
@@ -19,13 +20,16 @@ all: install build
 # Install project dependencies
 install:
 	@echo "Installing project dependencies..."
-	cd $(WWWROOT) && npm install
+	# cd $(WWWROOT) && npm install
+	cd $(CHATBOT_DIR) && npm install
 	@echo ""
 
 # Build the project
 build:
-	@echo "Building the project..."
-	cd $(WWWROOT) && npm run build 
+	@echo "Building the chatbot project..."
+	cd $(CHATBOT_DIR) && npm run build
+	@echo "Building the root project..."
+	cd $(WWWROOT) && npm run build
 	@echo "Build completed successfully."
 	@echo ""
 

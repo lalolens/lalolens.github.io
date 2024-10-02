@@ -7,10 +7,15 @@ import About from './pages/About/About';
 import Projects from './pages/Projects/Projects';
 import Contact from './pages/Contact/Contact';
 import DesignDemo from './pages/DesignDemo/DesignDemo';
+import  Chatbot  from '@lalolens/chatbot';
 import './App.css'; // General styles for App component
 
 const App: React.FC = () => {
   return (
+    <>
+    <div style={{ backgroundColor: 'white', minHeight: '100vh' }}>
+        <Chatbot />
+      </div>
     <Router>
       <Navbar />
       <div className="content">
@@ -24,6 +29,7 @@ const App: React.FC = () => {
         </Routes>
       </div>
     </Router>
+    </>
   );
 };
 
