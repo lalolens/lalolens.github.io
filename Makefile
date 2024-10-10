@@ -7,6 +7,7 @@
 # APACHE_MAKEFILE = Makefiles/Makefile.apache
 MAKE_APACHE = $(MAKE) -f Makefiles/Makefile.apache
 WWWROOT = lalolens.root
+PLAYGROUND_PROJECT = lalolens.playground
 ############################################################################################
 
 
@@ -15,7 +16,13 @@ WWWROOT = lalolens.root
 # 										  Vite Commands					      		       #
 ############################################################################################
 # Default target that builds the project
-all: install build
+all: sync_playground install build
+
+sync_playground:
+	@echo "Building the playground project..."
+	cd $(PLAYGROUND_PROJECT) && npm install
+	cd $(PLAYGROUND_PROJECT) && npm run build
+
 # Install project dependencies
 install:
 	@echo "Installing project dependencies..."

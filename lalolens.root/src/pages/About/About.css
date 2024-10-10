@@ -1,7 +1,9 @@
 /* src/components/About.css */
 .about {
-    max-width: 900px;
-    margin: 0 auto;
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 100px 0;
+  /* text-align: center; */
   }
   
   .about h1 {
@@ -13,21 +15,31 @@
   .about h2 {
     font-size: 28px;
     margin-top: 40px;
+    padding: 1rem 0;
     /* color: #0071EB; */
   }
   
   .about p,
   .about ul {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.6;
+    padding: 0.3rem 0;
   }
   
   .about ul {
     list-style-type: disc;
-    margin-left: 40px;
+    margin-left: 30px;
   }
   
   .about strong {
     color: #595959;
   }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      /* Custom niche scrollbar styles without visible track */
+      .about {
+        max-width: 85vw;
+      }
+    }
   

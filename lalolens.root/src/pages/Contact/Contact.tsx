@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
       <div className="contact">
       <h1>Contact Me</h1>
       <p>
-        I'm always open to discussing new opportunities, innovative ideas, or potential collaborations. Feel free to reach out via email or connect with me on LinkedIn and GitHub.
+        Recruiters, fellow professionals, or anyone curious about my journey—I’d love to connect. Feel free to reach out via email or connect with me on LinkedIn and GitHub to explore opportunities, collaborations, or to discuss how we can create impactful solutions together.
       </p>
       <div className="contact__logos">
         <a href="mailto:elaloglens@gmail.com" target="_blank" rel="noopener noreferrer">

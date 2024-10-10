@@ -14,7 +14,7 @@ const NavbarLinks: React.FC<NavbarLinksProps> = ({ closeMenu, isMobileMenuVisibl
 
   return (
     <ul className={`navbar__links ${isMobileMenuVisible ? 'active' : ''}`}>
-      {['/', '/about', '/projects', '/contact'].map((path, index) => (
+      {['/', '/about', '/projects', '/contact', "/playground"].map((path, index) => (
         <li key={index}>
           <Link
             to={path}

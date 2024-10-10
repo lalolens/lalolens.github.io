@@ -1,8 +1,8 @@
 /* src/components/Projects.css */
 .projects {
-  /* padding: 80px 20px; */
-  max-width: 1000px;
-  /* margin: 0 auto; */
+  max-width: 95vw;
+  margin: 0 auto;
+  padding: 100px 0;
 }
 
 .projects h1 {
@@ -20,13 +20,13 @@
 }
 
 .project h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
+  font-size: 27px;
+  margin-bottom: 20px;
   /* color: #0071EB; */
 }
 
 .project p {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.6;
 }
 
@@ -41,3 +41,12 @@
 .project a:hover {
   text-decoration: underline;
 }
+
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    /* Custom niche scrollbar styles without visible track */
+    .projects {
+      max-width: 90vw;
+    }
+  }

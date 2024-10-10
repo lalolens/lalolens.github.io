@@ -2,6 +2,9 @@
  * Global reset and base styles for the application using CSS variables.
  */
 
+ /* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
 /* Define global CSS variables */
 :root {
   --margin: 0;                        /* Default margin */
@@ -9,9 +12,10 @@
   --box-sizing: border-box;           /* Default box-sizing */
   --body-height: 100%;                /* Full height for body */
   --body-width: 100%;                 /* Full width for body */
-  --body-bg-color: #f9f9f9;           /* Background color for body */
-  --font-family: Arial, sans-serif;   /* Global font family */
+  --body-bg-color: #ffffff;           /* Background color for body */
+  --font-family: 'Roboto', Arial, sans-serif;   /* Global font family */
   --overflow-x: hidden;               /* Prevent horizontal scrolling */
+  --text-color: #595959;
 }
 
 /* CSS Reset */
@@ -28,6 +32,7 @@ body {
   background-color: var(--body-bg-color); /* Use variable for background color */
   font-family: var(--font-family);     /* Use variable for font family */
   overflow-x: var(--overflow-x);       /* Use variable for overflow */
+  color: var(--text-color)
 }
 
 #root {

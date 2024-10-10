@@ -8,25 +8,12 @@ import NavbarLinks from './NavbarLinks';
 import './Navbar.css';
 
 const Navbar: React.FC = () => {
-  const { isMobileMenuVisible } = useGlobalState();
+  const { isMobileMenuVisible, isNavbarScrolled } = useGlobalState();
   const dispatch = useGlobalDispatch();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      dispatch(setNavbarScrolled(offset > 50));
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [dispatch]);
 
   return (
     <div className={`navbar-container`}>
-      <nav className={`navbar`}>
+      <nav className={`navbar ${isNavbarScrolled ? 'scrolled' : ''}`}>
         <NavbarLogo />
         <NavbarToggle isOpen={isMobileMenuVisible} toggleMenu={() => dispatch(setMobileMenuVisibility(!isMobileMenuVisible))} />
         <NavbarLinks isMobileMenuVisible={isMobileMenuVisible} closeMenu={() => dispatch(setMobileMenuVisibility(false))} />

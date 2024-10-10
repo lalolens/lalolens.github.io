@@ -1,0 +1,57 @@
+.playground {
+  display: flex;
+  /* margin: 0px 100px;   */
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.playground h1 {
+  margin: 1.5rem;
+}
+
+.playground .chat-pane {
+  border: 3px solid green;
+  width: 95vw;
+  height: 70vh;
+  overflow-y: auto; /* Makes the chat-pane scrollable */
+  padding: 10px; 
+  box-sizing: border-box;
+}
+
+.playground .message {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  max-width: 70%;
+  align-self: flex-start;
+}
+
+.playground  .input-container {
+  display: flex;
+  border: 3px solid red;
+  /* margin-top: 10px; */
+  width: 95vw;
+}
+
+.playground  .input-bubble {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.playground  .send-button {
+  padding: 10px 20px;
+  background-color: #0071EB;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.playground  .send-button:hover {
+  background-color: #005bb5;
+}

@@ -1,7 +1,9 @@
 /* src/components/Contact.css */
 .contact {
-  text-align: center;
-  background-color: #ffffff;
+  max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 0;
+    text-align: center;
 }
 
 .contact h1 {
