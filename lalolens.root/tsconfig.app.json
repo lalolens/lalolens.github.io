@@ -17,13 +17,11 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@lalolens/chatbot": ["../lalolens.services/chatbot/dist"]
+      "@lalolens/playground": ["../lalolens.playground/src/Playground"],
+      "@lalolens/test": ["../lalolens.test/src/Test"]
     },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
-  "references": [
-    { "path": "../lalolens.services/chatbot" }
-  ]
 }

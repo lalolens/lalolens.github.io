@@ -13,7 +13,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.1",
-    "@lalolens/chatbot": "file:../lalolens.services/chatbot/dist"
+    "@lalolens/playground": "file:../lalolens.playground/dist/Playground",
+    "@lalolens/test": "file:../lalolens.test/dist/Test"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
@@ -26,4 +27,3 @@
     "eslint-plugin-react-hooks": "^4.6.0"
   }
 }
-  

@@ -7,7 +7,8 @@
 # APACHE_MAKEFILE = Makefiles/Makefile.apache
 MAKE_APACHE = $(MAKE) -f Makefiles/Makefile.apache
 WWWROOT = lalolens.root
-CHATBOT_DIR = lalolens.services/chatbot
+PLAYGROUND_PROJECT = lalolens.playground
+TEST_PROJECT = lalolens.test
 ############################################################################################
 
 
@@ -16,18 +17,27 @@ CHATBOT_DIR = lalolens.services/chatbot
 # 										  Vite Commands					      		       #
 ############################################################################################
 # Default target that builds the project
-all: install build
+all: sync_playground sync_test install build
+
+sync_playground:
+	@echo "Building the playground project..."
+	cd $(PLAYGROUND_PROJECT) && npm install
+	cd $(PLAYGROUND_PROJECT) && npm run build
+
+sync_test:
+	@echo "Building the playground project..."
+	cd $(TEST_PROJECT) && npm install
+	cd $(TEST_PROJECT) && npm run build
+
 # Install project dependencies
 install:
 	@echo "Installing project dependencies..."
-	# cd $(WWWROOT) && npm install
-	cd $(CHATBOT_DIR) && npm install
+	cd $(WWWROOT) && npm install
 	@echo ""
+
 
 # Build the project
 build:
-	@echo "Building the chatbot project..."
-	cd $(CHATBOT_DIR) && npm run build
 	@echo "Building the root project..."
 	cd $(WWWROOT) && npm run build
 	@echo "Build completed successfully."

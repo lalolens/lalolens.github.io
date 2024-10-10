@@ -107,6 +107,27 @@ const Navbar: React.FC = () => {
             Contact
           </Link>
         </li>
+
+        <li>
+          <Link
+            to="/playground"
+            className={location.pathname === '/playground' ? 'active' : ''}
+            aria-label="AI Playground"
+            onClick={closeMenu}
+          >
+            Playground
+          </Link>
+        </li>
+        {/* <li>
+          <Link
+            to="/test"
+            className={location.pathname === '/test' ? 'active' : ''}
+            aria-label="AI Playground"
+            onClick={closeMenu}
+          >
+            Test
+          </Link>
+        </li> */}
       </ul>
     </nav>
     

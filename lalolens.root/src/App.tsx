@@ -6,16 +6,13 @@ import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Projects from './pages/Projects/Projects';
 import Contact from './pages/Contact/Contact';
-import DesignDemo from './pages/DesignDemo/DesignDemo';
-import  Chatbot  from '@lalolens/chatbot';
+import  Playground  from '@lalolens/playground';
+// import  Test  from '@lalolens/test';
 import './App.css'; // General styles for App component
 
 const App: React.FC = () => {
   return (
     <>
-    <div style={{ backgroundColor: 'white', minHeight: '100vh' }}>
-        <Chatbot />
-      </div>
     <Router>
       <Navbar />
       <div className="content">
@@ -24,7 +21,8 @@ const App: React.FC = () => {
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/design" element={<DesignDemo />} />
+          <Route path="/playground" element={<Playground />} />
+          {/* <Route path="/test" element={<Test />} /> */}
           {/* Add more routes as needed */}
         </Routes>
       </div>

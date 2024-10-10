@@ -6,18 +6,12 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@lalolens/chatbot': path.resolve(__dirname, '../lalolens.services/chatbot/dist'),
-    },
-  },
-  server: {
-    fs: {
-      allow: [
-        path.resolve(__dirname, '.'), // Root project directory
-        path.resolve(__dirname, '../lalolens.services/chatbot') // Chatbot dist directory
-      ],
-    },
+      '@lalolens/playground': path.resolve(__dirname, '../lalolens.playground/src/Playground'),
+      '@lalolens/test': path.resolve(__dirname, '../lalolens.test/src/Test')
+    }
   },
   build: {
     outDir: 'dist',
-  },
+    sourcemap: true
+  }
 });

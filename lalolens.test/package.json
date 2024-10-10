@@ -1,10 +1,10 @@
 {
-    "name": "@lalolens/chatbot",
+    "name": "@lalolens/test",
     "version": "1.0.0",
     "private": true,
     "type": "module",
-    "main": "dist/Chatbot.js",
-    "types": "dist/Chatbot.d.ts",
+    "main": "dist/Test.js",
+    "types": "dist/Test.d.ts",
     "scripts": {
     "build": "tsc -b ",
     "watch": "tsc -b -w",
