@@ -62,7 +62,7 @@
 
 .playground .message.assistant {
   /* background-color: #f1f1f1; Light grey for assistant messages */
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   max-width: 100%;
   border-radius: 0px;
   /* align-self: flex-start; Aligns assistant messages to the left */

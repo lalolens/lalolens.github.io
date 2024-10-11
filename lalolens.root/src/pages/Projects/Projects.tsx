@@ -49,16 +49,16 @@ const projects: Project[] = [
   },
   {
     id: 6,
-    title: 'Main Website Revamp Serving Millions',
+    title: 'Main Website Redesign',
     description:
       'Contributed to the redesign of the main organizational website, serving millions annually. Integrated dynamic APIs into a static Jekyll framework to deliver real-time data. Optimized performance and security using Azure services, ensuring high availability and robust protection, enhancing user experience and trust.',
     link: 'https://www.coveredca.com',
   },
   {
     id: 7,
-    title: 'Geolocation-Based Service Finder',
+    title: 'Geolocation-Based Enroller Finder',
     description:
-      'Developed an innovative tool using React and Google Geolocation APIs to enable users to efficiently find nearby services. Integrated an interactive map with dynamic markers and advanced filtering options, enhancing user engagement and accessibility with responsive design and thorough testing.',
+      'Developed an innovative tool using React and Geolocation APIs to enable users to efficiently find nearby services. Integrated an interactive map with dynamic markers and advanced filtering options, enhancing user engagement and accessibility with responsive design and thorough testing.',
     link: 'https://www.coveredca.com/support/find-an-enroller/',
   },
   {

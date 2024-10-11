@@ -14,7 +14,6 @@ import '../MainContent.css';
 
 
 
-
 const Hero: React.FC = () => {
   return (
     <>

@@ -4,10 +4,9 @@ import './Contact.css';
 import '../MainContent.css';
 
 // Import your logo images (use correct paths for your logo files)
-import emailLogo from '../../assets/material-icons/mail.svg'; // Replace with actual path to your email logo
-import linkedinLogo from '../../assets/social-icons/linkedIn-logo.png'; // Replace with actual path to your LinkedIn logo
-import githubLogo from '../../assets/social-icons/github-logo.svg'; // Replace with actual path to your GitHub logo
-
+import emailLogo from '../../assets/material-icons/mail.svg';
+import linkedinLogo from '../../assets/social-icons/linkedIn-logo.png';
+import githubLogo from '../../assets/social-icons/github-logo.svg';
 
 const Contact: React.FC = () => {
   return (
