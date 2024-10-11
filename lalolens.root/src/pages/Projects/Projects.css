@@ -1,6 +1,6 @@
 /* src/components/Projects.css */
 .projects {
-  max-width: 95vw;
+  max-width: 80vw;
   margin: 0 auto;
   padding: 100px 0;
 }
@@ -13,7 +13,7 @@
 
 .project {
   background-color: #ffffff;
-  padding: 30px;
+  padding: 2rem;
   margin-bottom: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -47,6 +47,10 @@
   @media (max-width: 768px) {
     /* Custom niche scrollbar styles without visible track */
     .projects {
-      max-width: 90vw;
+      max-width: 95vw;
+    }
+
+    .project {
+      padding: 1rem;
     }
   }

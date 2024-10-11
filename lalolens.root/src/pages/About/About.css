@@ -1,6 +1,6 @@
 /* src/components/About.css */
 .about {
-  max-width: 90vw;
+  max-width: 80vw;
   margin: 0 auto;
   padding: 100px 0;
   /* text-align: center; */
@@ -35,11 +35,11 @@
     color: #595959;
   }
 
-    /* Mobile Responsiveness */
-    @media (max-width: 768px) {
-      /* Custom niche scrollbar styles without visible track */
-      .about {
-        max-width: 85vw;
-      }
-    }
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Custom niche scrollbar styles without visible track */
+  .about {
+    max-width: 85vw;
+  }
+}
   

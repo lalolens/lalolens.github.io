@@ -1,12 +1,9 @@
 // src/components/Layout/Layout.tsx
-import React, { useEffect, useRef } from 'react';
-import { useGlobalState, useGlobalDispatch } from '../../context/globalHooks';
-import { setNavbarScrolled } from '../../context/globalActions';
+import React from 'react';
+import { useGlobalState } from '../../context/globalHooks';
 
 import Navbar from '../Navbar/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
-
-import useScrollHandler from '../../hooks/useScollHandler';
 
 import './Layout.css';
 
@@ -29,11 +26,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const ContentPane: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
-    // const containerRef = useRef<HTMLDivElement>(null);
-    // useScrollHandler(containerRef);
-
     return (
-      <div  className={`main-content-pane ${isSidebarVisible ? 'with-sidebar' : ''} ${isSidebarExpanded ? 'expanded' : ''}`}>
+      <div className={`main-content-pane ${isSidebarVisible ? 'with-sidebar' : ''} ${isSidebarExpanded ? 'expanded' : ''}`}>
         {children}
       </div>
     );

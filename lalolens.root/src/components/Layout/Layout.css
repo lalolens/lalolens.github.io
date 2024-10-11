@@ -69,6 +69,7 @@
     height: var(--adjusted-main-height);
     z-index: 1;
     transition: margin-left 0.3s ease;
+    /* border: 1px solid red; */
 }
 
 .main-content-pane.with-sidebar {

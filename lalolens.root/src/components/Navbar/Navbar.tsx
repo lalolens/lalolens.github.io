@@ -1,19 +1,19 @@
 // src/components/Navbar/Navbar.tsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useGlobalState, useGlobalDispatch } from '../../context/globalHooks';
-import { setMobileMenuVisibility, setNavbarScrolled } from '../../context/globalActions';
+import { setMobileMenuVisibility } from '../../context/globalActions';
 import NavbarLogo from './NavbarLogo';
 import NavbarToggle from './NavbarToggle';
 import NavbarLinks from './NavbarLinks';
 import './Navbar.css';
 
 const Navbar: React.FC = () => {
-  const { isMobileMenuVisible, isNavbarScrolled } = useGlobalState();
+  const { isMobileMenuVisible } = useGlobalState();
   const dispatch = useGlobalDispatch();
 
   return (
     <div className={`navbar-container`}>
-      <nav className={`navbar ${isNavbarScrolled ? 'scrolled' : ''}`}>
+      <nav className={`navbar`}>
         <NavbarLogo />
         <NavbarToggle isOpen={isMobileMenuVisible} toggleMenu={() => dispatch(setMobileMenuVisibility(!isMobileMenuVisible))} />
         <NavbarLinks isMobileMenuVisible={isMobileMenuVisible} closeMenu={() => dispatch(setMobileMenuVisibility(false))} />
