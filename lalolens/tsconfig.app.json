@@ -17,7 +17,8 @@
       "noFallthroughCasesInSwitch": true,
       "baseUrl": ".",
       "paths": {
-        "@lalolens/playground/*": ["packages/playground/src/*"],
+        "@lalolens/playground": ["packages/playground/src/Playground"],
+        "@lalolens/playground/*": ["packages/playground/src/*"]
       },
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true
