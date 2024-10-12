@@ -12,11 +12,11 @@ apache-install:
 	sudo a2dismod mpm_worker || true
 	sudo a2dismod mpm_prefork || true
 	@echo "Restarting Apache to apply changes after disabling MPM modules..."
-	sudo systemctl restart apache2
+	sudo service apache2 restart
 	@echo "Enabling mpm_prefork module for Apache..."
 	sudo a2enmod mpm_prefork
 	@echo "Restarting Apache after enabling mpm_prefork..."
-	sudo systemctl restart apache2
+	sudo service apache2 restart
 	@echo "Testing Apache configuration..."
 	sudo apachectl configtest
 	@echo "Apache server installation and configuration completed."
