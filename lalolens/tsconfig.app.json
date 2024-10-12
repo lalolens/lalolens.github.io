@@ -23,5 +23,5 @@
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true
     },
-    "include": ["src",  "packages/playground/src"],
+    "include": ["dotcom",  "packages/playground/src"],
   }
