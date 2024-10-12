@@ -6,8 +6,8 @@
 ############################################################################################
 # APACHE_MAKEFILE = Makefiles/Makefile.apache
 MAKE_APACHE = $(MAKE) -f Makefiles/Makefile.apache
-WWWROOT = lalolens.root
-PLAYGROUND_PROJECT = lalolens.playground
+WWWROOT = lalolens
+PLAYGROUND_PROJECT = lalolens/packages/playground
 ############################################################################################
 
 

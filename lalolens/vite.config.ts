@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       // Alias for Playground project
-      '@lalolens/playground': path.resolve(__dirname, '../lalolens.playground/src'),
+      '@lalolens/playground': path.resolve(__dirname, 'packages/playground/src'),
     }
   },
   build: {

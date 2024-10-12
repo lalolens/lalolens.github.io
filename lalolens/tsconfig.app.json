@@ -17,10 +17,10 @@
       "noFallthroughCasesInSwitch": true,
       "baseUrl": ".",
       "paths": {
-        "@lalolens/playground/*": ["../lalolens.playground/src/*"],
+        "@lalolens/playground/*": ["packages/playground/src/*"],
       },
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true
     },
-    "include": ["src",  "../lalolens.playground/src"],
+    "include": ["src",  "packages/playground/src"],
   }

@@ -8,15 +8,10 @@ lalolens.github.io:
   - .github/
     - workflows/
       - github-pages.yml
-  - lalolens.playground/
-    - src/
-      - Playground.tsx
-      - Playground.css
-    - package.json
-    - tsconfig.json
-  - lalolens.root/
+  - lalolens/
+
     - public/
-    - src/
+    - dotcom/
       - assets/
       - components/
       - context/
@@ -26,6 +21,13 @@ lalolens.github.io:
       - index.css
       - main.tsx
       - vite-env.d.ts
+    - packages/
+      - playground/
+        - src/
+          - Playground.tsx
+          - Playground.css
+        - package.json
+        - tsconfig.json
     - eslint.config.js
     - index.html
     - package.json
