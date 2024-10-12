@@ -7,34 +7,35 @@ apache-install:
 	@echo "Installing Apache server..."
 	sudo apt update
 	sudo apt install -y apache2
-	@echo "Apache server installation completed."
+	@echo "Disabling all MPM modules to avoid conflicts..."
+	sudo a2dismod mpm_event || true
+	sudo a2dismod mpm_worker || true
+	sudo a2dismod mpm_prefork || true
+	@echo "Restarting Apache to apply changes after disabling MPM modules..."
+	sudo systemctl restart apache2
+	@echo "Enabling mpm_prefork module for Apache..."
+	sudo a2enmod mpm_prefork
+	@echo "Restarting Apache after enabling mpm_prefork..."
+	sudo systemctl restart apache2
+	@echo "Testing Apache configuration..."
+	sudo apachectl configtest
+	@echo "Apache server installation and configuration completed."
 
 apache-set-wwwroot:
-	@if [ -d "/var/www/html/lalolens/laloroot/" ]; then \
-		echo "Directory /var/www/html/lalolens/laloroot/ already exists. Deleting it..."; \
-		sudo rm -rf /var/www/html/lalolens/laloroot/; \
+	@if [ -d "/var/www/html/lalolens/" ]; then \
+		echo "Directory /var/www/html/lalolens/ already exists. Deleting it..."; \
+		sudo rm -rf /var/www/html/lalolens/; \
 	else \
-		echo "Directory /var/www/html/lalolens/laloroot/ does not exist. Proceeding..."; \
+		echo "Directory /var/www/html/lalolens/ does not exist. Proceeding..."; \
 	fi
-	@echo "Creating /var/www/html/lalolens/laloroot and copying project files..."
-	sudo mkdir -p /var/www/html/lalolens/laloroot
-	sudo cp -r lalolens.root/dist/* /var/www/html/lalolens/laloroot
-
-	@if [ -d "/var/www/html/lalolens/playground/" ]; then \
-		echo "Directory /var/www/html/lalolens/playground/ already exists. Deleting it..."; \
-		sudo rm -rf /var/www/html/lalolens/playground/; \
-	else \
-		echo "Directory /var/www/html/lalolens/playground/ does not exist. Proceeding..."; \
-	fi
-	@echo "Creating /var/www/html/lalolens/playground and copying project files..."
-	sudo mkdir -p /var/www/html/lalolens/playground
-	sudo cp -r lalolens.playground/dist/* /var/www/html/lalolens/playground
-
-	@echo "Project files have been set up at /var/www/html/lalolens/laloroot and /var/www/html/lalolens/playground."
+	@echo "Creating /var/www/html/lalolens and copying project files..."
+	sudo mkdir -p /var/www/html/lalolens
+	sudo cp -r lalolens.root/dist/* /var/www/html/lalolens
+	@echo "Project files have been set up at /var/www/html/lalolens."
 
 # Ensure the correct permissions for the Codespaces environment
 apache-auth:
-	@echo "Setting permissions for /var/www/html/lalolens/laloroot and /var/www/html/lalolens/playground..."
+	@echo "Setting permissions for /var/www/html/lalolens..."
 	sudo chown -R www-data:www-data /var/www/html/lalolens
 	sudo chmod -R 775 /var/www/html/lalolens
 	@echo "Permissions set successfully."

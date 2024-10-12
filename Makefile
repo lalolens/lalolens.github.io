@@ -83,7 +83,7 @@ reload-local-apache-server: all
 # Start both app and Apache for Codespaces environment
 start-codespace-apache-server: all
 	@echo "Starting Apache server in Codespaces..."
-	sudo bash ./scripts/setup-apache-environment.sh IS_CODESPACE=true
+	sudo IS_CODESPACE=true bash ./scripts/setup-apache-environment.sh
 	$(MAKE_APACHE) apache-service-start
 	@echo "Apache server in Codespaces started successfully."
 	@echo ""
