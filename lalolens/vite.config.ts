@@ -21,11 +21,6 @@
           chunkFileNames: '[name]-[hash].js', // Specify chunk file naming convention
           assetFileNames: '[name]-[hash][extname]' // Specify asset file naming convention
         },
-        external: [
-          // Specify dependencies to be treated as external (not bundled in the final output)
-          'react', 
-          'react-dom'
-        ]
       }
     },
     server: {
