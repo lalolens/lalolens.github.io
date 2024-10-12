@@ -13,7 +13,8 @@ import Contact from './pages/Contact/Contact';
 import Projects from './pages/Projects/Projects' 
 import { GlobalProvider } from './context/GlobalContext';
 
-import  Playground  from '@lalolens/playground/Playground';
+// import  Playground  from '@lalolens/playground/Playground';
+import  Playground  from '../packages/playground/src/Playground';
 
 import './App.css';
 
@@ -27,7 +28,7 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/playground" element={<div>Hi</div>} />
+            <Route path="/playground" element={<Playground />} />
             {/* Add more routes as needed */}
           </Routes>
         </Layout>

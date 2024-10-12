@@ -17,7 +17,7 @@ export default defineConfig({
   server: {
     // Optional: If your project structure requires serving additional directories for development
     fs: {
-      allow: ['..'], // Allow access to parent directory, which is important for shared projects
+      allow: ['.'], // Allow access to parent directory, which is important for shared projects
     }
   },
   optimizeDeps: {
