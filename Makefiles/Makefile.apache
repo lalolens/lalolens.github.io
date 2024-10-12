@@ -10,21 +10,31 @@ apache-install:
 	@echo "Apache server installation completed."
 
 apache-set-wwwroot:
-	@if [ -d "/var/www/html/lalolens/" ]; then \
-		echo "Directory /var/www/html/lalolens/ already exists. Deleting it..."; \
-		sudo rm -rf /var/www/html/lalolens/; \
+	@if [ -d "/var/www/html/lalolens/laloroot/" ]; then \
+		echo "Directory /var/www/html/lalolens/laloroot/ already exists. Deleting it..."; \
+		sudo rm -rf /var/www/html/lalolens/laloroot/; \
 	else \
-		echo "Directory /var/www/html/lalolens/ does not exist. Proceeding..."; \
+		echo "Directory /var/www/html/lalolens/laloroot/ does not exist. Proceeding..."; \
 	fi
-	@echo "Creating /var/www/html/lalolens and copying project files..."
-	sudo mkdir -p /var/www/html/lalolens
-	sudo cp -r lalolens.root/dist/* /var/www/html/lalolens
-	
-	@echo "Project files have been set up at /var/www/html/lalolens."
+	@echo "Creating /var/www/html/lalolens/laloroot and copying project files..."
+	sudo mkdir -p /var/www/html/lalolens/laloroot
+	sudo cp -r lalolens.root/dist/* /var/www/html/lalolens/laloroot
+
+	@if [ -d "/var/www/html/lalolens/playground/" ]; then \
+		echo "Directory /var/www/html/lalolens/playground/ already exists. Deleting it..."; \
+		sudo rm -rf /var/www/html/lalolens/playground/; \
+	else \
+		echo "Directory /var/www/html/lalolens/playground/ does not exist. Proceeding..."; \
+	fi
+	@echo "Creating /var/www/html/lalolens/playground and copying project files..."
+	sudo mkdir -p /var/www/html/lalolens/playground
+	sudo cp -r lalolens.playground/dist/* /var/www/html/lalolens/playground
+
+	@echo "Project files have been set up at /var/www/html/lalolens/laloroot and /var/www/html/lalolens/playground."
 
 # Ensure the correct permissions for the Codespaces environment
 apache-auth:
-	@echo "Setting permissions for /var/www/html/lalolens..."
+	@echo "Setting permissions for /var/www/html/lalolens/laloroot and /var/www/html/lalolens/playground..."
 	sudo chown -R www-data:www-data /var/www/html/lalolens
 	sudo chmod -R 775 /var/www/html/lalolens
 	@echo "Permissions set successfully."

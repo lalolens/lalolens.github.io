@@ -1,0 +1,47 @@
+I deployed a site to GitHub pages and I have projects outside of the root project that I need to ensure are callable from the root project
+
+
+right now here is my structure
+
+
+lalolens.github.io:
+  - .github/
+    - workflows/
+      - github-pages.yml
+  - lalolens.playground/
+    - src/
+      - Playground.tsx
+      - Playground.css
+    - package.json
+    - tsconfig.json
+  - lalolens.root/
+    - public/
+    - src/
+      - assets/
+      - components/
+      - context/
+      - pages/
+      - App.tsx
+      - App.css
+      - index.css
+      - main.tsx
+      - vite-env.d.ts
+    - eslint.config.js
+    - index.html
+    - package.json
+    - tsconfig.json
+    - tsconfig.app.json
+    - tsconfig.json
+    - tsconfig.node.json
+    - vite.config.ts
+  - Makefiles/
+    - Makefile.apache
+  - scripts/
+    - setup-apache-environment.sh
+  - .gitignore
+  - CNAME
+  - color_system
+  - Makefile
+  - README.md
+
+  

@@ -6,12 +6,22 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@lalolens/playground': path.resolve(__dirname, '../lalolens.playground/src/Playground'),
-      '@lalolens/test': path.resolve(__dirname, '../lalolens.test/src/Test')
+      // Alias for Playground project
+      '@lalolens/playground': path.resolve(__dirname, '../lalolens.playground/src'),
     }
   },
   build: {
     outDir: 'dist',
     sourcemap: true
+  },
+  server: {
+    // Optional: If your project structure requires serving additional directories for development
+    fs: {
+      allow: ['..'], // Allow access to parent directory, which is important for shared projects
+    }
+  },
+  optimizeDeps: {
+    // Optional: Pre-bundle dependencies if some modules from aliases are used frequently
+    include: ['@lalolens/playground']
   }
 });

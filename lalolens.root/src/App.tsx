@@ -13,7 +13,7 @@ import Contact from './pages/Contact/Contact';
 import Projects from './pages/Projects/Projects' 
 import { GlobalProvider } from './context/GlobalContext';
 
-import  Playground  from '@lalolens/playground';
+import  Playground  from '@lalolens/playground/Playground';
 
 import './App.css';
 

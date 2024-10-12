@@ -1,81 +1,96 @@
-  # .github/workflows/deploy.yml
+# .github/workflows/deploy.yml
 
-  name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
-  on:
-    # Trigger the workflow on push to the main branch
-    push:
-      branches:
-        - main
+on:
+  # Trigger the workflow on push to the main branch
+  push:
+    branches:
+      - main
 
-    # Allow manual triggering of the workflow from the Actions tab
-    workflow_dispatch:
+  # Allow manual triggering of the workflow from the Actions tab
+  workflow_dispatch:
 
-  permissions:
-    contents: read
-    pages: write
-    id-token: write
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-  concurrency:
-    group: "pages"
-    cancel-in-progress: false
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
-  jobs:
-    # Job 1: Build and Upload Artifact
-    build:
-      name: Build and Upload Artifact
-      runs-on: ubuntu-latest
-      outputs:
-        build_dir: lalolens.root/dist  # Define the build directory as an output
-      steps:
-        # 1. Checkout the Repository
-        - name: Checkout Repository
-          uses: actions/checkout@v3
+jobs:
+  # Job 1: Build and Upload Artifact
+  build:
+    name: Build and Upload Artifact
+    runs-on: ubuntu-latest
+    outputs:
+      build_dir: lalolens.root/dist  # Define the build directory as an output
+    steps:
+      # 1. Checkout the Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-        # 2. Setup Node.js Environment
-        - name: Setup Node.js Environment
-          uses: actions/setup-node@v3
-          with:
-            node-version: '18'  # Specify the Node.js version your project requires
+      # 2. Setup Node.js Environment
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Specify the Node.js version your project requires
 
-        # 3. Install Dependencies and Build the Project
-        - name: Build the Project
-          run: make
-          working-directory: .  # Adjust if 'make' is in a different directory
+      # 3. Install Dependencies for Playground
+      - name: Install Dependencies for Playground
+        working-directory: ./lalolens.playground
+        run: npm install
 
-        # 4. Create .nojekyll File in the 'www' Directory
-        - name: Create .nojekyll File
-          run: sudo touch .nojekyll
-          working-directory: lalolens.root/dist # Ensure this points to where 'www' is located
+      # 4. Install Dependencies for Root Project
+      - name: Install Dependencies for Root Project
+        working-directory: ./lalolens.root
+        run: npm install
 
-        # 5. Create 404.html for GitHub Pages Routing
-        - name: Create 404.html for GitHub Pages
-          run: sudo cp index.html 404.html
-          working-directory: lalolens.root/dist
+      # 5. Build Playground
+      - name: Build Playground Project
+        working-directory: ./lalolens.playground
+        run: npm run build
 
-        # 5. Verify Build Output (Optional)
-        - name: Verify Build Output
-          run: ls -la .
-          working-directory: lalolens.root/dist
+      # 6. Build Root Project
+      - name: Build Root Project
+        working-directory: ./lalolens.root
+        run: npm run build
 
-        # 6. Upload Pages Artifact
-        - name: Upload Pages Artifact
-          uses: actions/upload-pages-artifact@v1
-          with:
-            path: lalolens.root/dist  # Upload the current directory (./lalolens/www) as the artifact
+      # 7. Create .nojekyll File in the 'dist' Directory
+      - name: Create .nojekyll File
+        run: touch .nojekyll
+        working-directory: lalolens.root/dist
 
-    # Job 2: Deploy to GitHub Pages
-    deploy:
-      name: Deploy to GitHub Pages
-      runs-on: ubuntu-latest
-      needs: build  # This job depends on the 'build' job
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
-      steps:
-        # 1. Deploy to GitHub Pages
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v1
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}  # Use your PAT if necessary
+      # 8. Create 404.html for GitHub Pages Routing
+      - name: Create 404.html for GitHub Pages
+        run: cp index.html 404.html
+        working-directory: lalolens.root/dist
+
+      # 9. Verify Build Output (Optional)
+      - name: Verify Build Output
+        run: ls -la
+        working-directory: lalolens.root/dist
+
+      # 10. Upload Pages Artifact
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: lalolens.root/dist  # Upload the dist directory as the artifact
+
+  # Job 2: Deploy to GitHub Pages
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: build  # This job depends on the 'build' job
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # 1. Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token to deploy
