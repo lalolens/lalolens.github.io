@@ -1,10 +1,14 @@
-import React, { useState, useRef } from 'react';
+// import React, { useState, useRef } from 'react';
+import React from 'react';
+
 import './Playground.css';
 
-interface MessageProps {
-  role: 'user' | 'assistant';
-  content: string;
-}
+// interface MessageProps {
+//   role: 'user' | 'assistant';
+//   content: string;
+// }
+
+/*
 
 const Playground: React.FC = () => {
   const [messages, setMessages] = useState<MessageProps[]>([
@@ -96,4 +100,16 @@ const Playground: React.FC = () => {
   );
 };
 
+*/
+
+const Playground: React.FC = () => {
+  console.log("Playground")
+  return (
+    <>
+      <div>
+        <h1>Hello</h1>
+      </div>
+    </>
+  );
+}
 export default Playground;

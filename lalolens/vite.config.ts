@@ -4,19 +4,19 @@
 
   export default defineConfig({
     plugins: [react()],
-    resolve: {
-      alias: {
-        // Alias for Playground project
-        '@lalolens/playground': path.resolve(__dirname, 'packages/playground/src'),
-      }
-    },
+    // resolve: {
+    //   alias: {
+    //     // Alias for Playground project
+    //     '@lalolens/playground': path.resolve(__dirname, 'packages/playground/src'),
+    //   }
+    // },
     build: {
       outDir: 'dist',
       sourcemap: true,
       rollupOptions: {
         input: {
           main: path.resolve(__dirname, 'dotcom/main.tsx'),
-          playground: path.resolve(__dirname, 'packages/playground/src/Playground.tsx'), // Update this to the main file of your playground package
+          // playground: path.resolve(__dirname, 'packages/playground/src/Playground.tsx'), // Update this to the main file of your playground package
         },
         output: {
           dir: path.resolve(__dirname, 'dist'),
@@ -38,8 +38,8 @@
         allow: ['.'], // Allow access to parent directory, which is important for shared projects
       }
     },
-    optimizeDeps: {
-      // Optional: Pre-bundle dependencies if some modules from aliases are used frequently
-      include: ['@lalolens/playground']
-    }
+    // optimizeDeps: {
+    //   // Optional: Pre-bundle dependencies if some modules from aliases are used frequently
+    //   include: ['@lalolens/playground']
+    // }
   });
