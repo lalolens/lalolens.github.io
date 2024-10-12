@@ -14,10 +14,6 @@
       outDir: 'dist',
       sourcemap: true,
       rollupOptions: {
-        input: {
-          main: path.resolve(__dirname, 'dotcom/main.tsx'),
-          // playground: path.resolve(__dirname, 'packages/playground/src/Playground.tsx'), // Update this to the main file of your playground package
-        },
         output: {
           dir: path.resolve(__dirname, 'dist'),
           format: 'es', // Define the output format as ES modules
