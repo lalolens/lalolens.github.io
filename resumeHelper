@@ -1,0 +1,27 @@
+I am going to create a set of questions.
+
+i need a typescript react component  tht outputs questions with a text area for input
+
+
+
+Here are the questions or prompts. They may have additional notes underneath.
+
+
+- Enter your position role
+  - Give as many keywords as possible when it comes to the roles.
+  - This will help with the system prompt generation
+- Enter the job description of position you are applying for:
+- Enter additional details about the job you are applying for:
+
+- Enter the skills section of your resume
+- Enter education section of your resume
+- Enter the certifications/lincense section of your resume
+- Enter the experience section of your resume
+  - users should be able to add multiple job experience descriptions. This should come in the form of some button or trigger that adds another text area with experience description
+  - + (Add Job With descriptions)
+  - The user can either paste their raw data 
+- Enter details of projects
+  - include the option to add more projects
+  - users should be able to add multiple projects. This should come in the form of some button or trigger that adds another text area with the project information
+- Enter additional details you would like to include about your work or yourself that should be factored in
+
