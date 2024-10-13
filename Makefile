@@ -7,7 +7,7 @@
 # APACHE_MAKEFILE = Makefiles/Makefile.apache
 MAKE_APACHE = $(MAKE) -f Makefiles/Makefile.apache
 WWWROOT = lalolens
-PLAYGROUND_PROJECT = lalolens/packages/playground
+PLAYGROUND_PROJECT = lalolens/packages/chat
 ############################################################################################
 
 

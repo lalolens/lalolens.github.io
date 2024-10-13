@@ -1,0 +1,12 @@
+{
+  "name": "@lalolens/chat",
+  "version": "0.1.0",
+  "main": "src/ChatInterface.tsx",
+  "types": "src/ChatInterface.tsx",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "react": "^18.0.0"
+  }
+}

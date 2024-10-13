@@ -14,9 +14,12 @@ import Projects from './pages/Projects/Projects'
 import { GlobalProvider } from './context/GlobalContext';
 
 // import  Playground  from '@lalolens/playground/Playground';
-import  Playground  from '../packages/playground/src/Playground';
+// import ChatInterface from '../packages/chat/src/ChatInterface';
+// // import  { Chat }  from '@lalolens/chat';
 
 import './App.css';
+import Assistant from './pages/Assistant/Assistant';
+
 
 const App: React.FC = () => {
   return (
@@ -28,7 +31,7 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/playground" element={<Playground />} />
+            <Route path="/assistant" element={<Assistant />} />
             {/* Add more routes as needed */}
           </Routes>
         </Layout>

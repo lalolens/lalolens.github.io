@@ -9,7 +9,6 @@ lalolens.github.io:
     - workflows/
       - github-pages.yml
   - lalolens/
-
     - public/
     - dotcom/
       - assets/
@@ -26,8 +25,6 @@ lalolens.github.io:
         - src/
           - Playground.tsx
           - Playground.css
-        - package.json
-        - tsconfig.json
     - eslint.config.js
     - index.html
     - package.json

@@ -1,0 +1,133 @@
+  .playground {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 85vh;
+    padding: 0.6rem;
+  }
+
+  /* .playground h1 {
+    margin: 1.5rem;
+  } */
+
+  .playground h1 {
+    font-size: 36px;
+    /* margin-bottom: 40px; */
+    text-align: center;
+  }
+
+  .playground h2 {
+    font-size: 28px;
+    margin-top: 40px;
+    padding: 1rem 0;
+    /* color: #0071EB; */
+  }
+
+
+  .playground .chat-pane {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* Makes the chat-pane scrollable */
+    padding: 20px; /* Padding for better spacing */
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8; /* Light gray background for contrast */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 20px; /* Rounded corners for a modern look */
+  }
+
+  /* General message styling */
+  .playground .message {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    max-width: 70%;
+    width: fit-content;
+    border: none;
+    position: relative;
+  }
+
+  /* Specific styles for different roles */
+  .playground .message.user {
+    background-color: #d1f5ff; /* Light blue for user messages */
+    align-self: flex-end; /* Aligns user messages to the right */
+    box-shadow: 0 4px 8px rgba(0, 113, 235, 0.2); /* Subtle shadow for depth */
+    margin-top: 1rem;
+  }
+
+  .playground .message.assistant {
+    /* background-color: #f1f1f1; Light grey for assistant messages */
+    /* border-bottom: 1px solid black; */
+    max-width: 100%;
+    border-radius: 0px;
+    /* align-self: flex-start; Aligns assistant messages to the left */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); Soft shadow for a clean look */
+    padding: 3em 0;
+  }
+
+
+  .playground .input-container {
+    display: flex;
+    align-items: flex-end; /* Aligns the button with the bottom of the textarea */
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .playground .input-bubble {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    margin-right: 10px;
+    resize: none; /* Disable manual resizing for better control */
+    overflow: hidden; /* Hide overflow when resizing automatically */
+    min-height: 40px; /* Minimum height for better appearance */
+    max-height: 200px; /* Maximum height to keep it reasonable */
+  }
+
+  .playground .send-button {
+    padding: 10px 20px;
+    background-color: #0071EB;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .playground .send-button:hover {
+    background-color: #005bb5;
+  }
+
+  /* Custom Scrollbar Styling */
+  .playground .chat-pane::-webkit-scrollbar {
+    width: 6px; /* Width of the scrollbar */
+  }
+
+  .playground .chat-pane::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  .playground .chat-pane::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #0071EB, #00A8E8); /* Gradient for the thumb */
+    border-radius: 12px; /* Rounded thumb corners */
+    border: 2px solid #f0f0f0; /* Adds a small border around the thumb */
+    box-shadow: 0 2px 5px rgba(0, 113, 235, 0.3); /* Soft shadow for a "floating" effect */
+  }
+
+  .playground .chat-pane::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #005bb5, #0071EB); /* Darker gradient on hover */
+    box-shadow: 0 4px 10px rgba(0, 113, 235, 0.6); /* Stronger glow effect on hover */
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .playground {
+      padding: 0.1rem;
+    }
+  }

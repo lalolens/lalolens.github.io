@@ -1,13 +1,33 @@
 import React, { useState, useRef } from 'react';
-
-import './Playground.css';
+import ChatHeader from './components/ChatHeader';
+import ChatPane from './components/ChatPane';
+import InputContainer from './components/InputContainer';
+import './ChatInterface.css';
 
 interface MessageProps {
   role: 'user' | 'assistant';
   content: string;
 }
 
-const Playground: React.FC = () => {
+interface ChatInterfaceProps {
+  userMessageColor?: string;
+  assistantMessageColor?: string;
+  backgroundColor?: string;
+  chatPaneShadow?: string;
+  inputBorderColor?: string;
+  sendButtonColor?: string;
+  sendButtonHoverColor?: string;
+}
+
+const ChatInterface: React.FC<ChatInterfaceProps> = ({
+  userMessageColor = '#d1f5ff',
+  assistantMessageColor = '#f1f1f1',
+  backgroundColor = '#f8f8f8',
+  chatPaneShadow = '0 4px 15px rgba(0, 0, 0, 0.1)',
+  inputBorderColor = '#ccc',
+  sendButtonColor = '#0071EB',
+  sendButtonHoverColor = '#005bb5',
+}) => {
   const [messages, setMessages] = useState<MessageProps[]>([
     { role: 'user', content: 'Hello, can you help me understand what machine learning is?' },
     { role: 'assistant', content: 'Of course! Machine learning is a type of artificial intelligence that allows computers to learn from and make predictions based on data, rather than being explicitly programmed for every task.' },
@@ -71,31 +91,22 @@ const Playground: React.FC = () => {
   };
 
   return (
-    <section className="playground">
-      <h1>Playground Component</h1>
-      <div className="chat-pane">
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${message.role}`}>
-            {message.content}
-          </div>
-        ))}
-      </div>
-      <div className="input-container">
-        <textarea
-          ref={inputRef}
-          value={input}
-          onChange={handleInputChange}
-          className="input-bubble"
-          placeholder="Type a message..."
-          rows={1}
+    <>
+      <section className="playground" style={{ backgroundColor }}>
+        <ChatHeader title="Chat Assistant" />
+        <ChatPane messages={messages} userMessageColor={userMessageColor} assistantMessageColor={assistantMessageColor} chatPaneShadow={chatPaneShadow} />
+        <InputContainer
+          input={input}
+          handleInputChange={handleInputChange}
+          handleSendMessage={handleSendMessage}
+          inputRef={inputRef}
+          inputBorderColor={inputBorderColor}
+          sendButtonColor={sendButtonColor}
+          sendButtonHoverColor={sendButtonHoverColor}
         />
-        <button onClick={handleSendMessage} className="send-button">
-          Send
-        </button>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
-
-export default Playground;
+export default ChatInterface;
