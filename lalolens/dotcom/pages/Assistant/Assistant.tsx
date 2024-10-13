@@ -10,7 +10,7 @@ const Assistant: React.FC = () => {
   <>
     <div className="banner">
       <p className="banner-text">
-        THis page is currently under construction. My goal is to bring a customizable chat interface that can be used in any JS project and then iplement an AI driver playgground demo for you. Please feel free to look at this interesting chat interface in the meantime.
+        THis page is currently under construction. My goal is to bring a customizable chat interface that can be used in any UI project and then implement an AI driven playgground demo for you. Please feel free to view at this interesting chat interface in the meantime.
         </p>
     </div>
     <main className="main-container">
