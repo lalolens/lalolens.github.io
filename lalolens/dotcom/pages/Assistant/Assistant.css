@@ -2,5 +2,42 @@
       /* border: 1px solid red; */
       background: #ffffff;
       font-family: 'Roboto';
+      color: #595959;
   }
+
+  .banner {
+    width: 100%;
+    max-height: 16vh;
+
+    background: rgba(255, 117, 117, 0.2);
+    border: 1px solid rgba(255, 117, 117, 0.7);
+
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-wrap: wrap;
+
+    margin-bottom: 5rem;
+    padding: 1rem;
+    word-wrap: break-word;
+  }
+
+  .banner-text {
+    font-family: 'Roboto';
+    font-size: 1rem;
+    font-weight: bold;
+    max-width: 70vw;
+    /* margin: 3rem; */
+  }
+
+
+
+    /* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Custom niche scrollbar styles without visible track */
+    .banner-text {
+      max-width: 90vw;
+    }
+  }
+    
   
