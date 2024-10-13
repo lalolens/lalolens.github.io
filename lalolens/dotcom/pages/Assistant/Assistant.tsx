@@ -15,7 +15,7 @@ const Assistant: React.FC = () => {
             assistantMessageColor={'#ffffff'}
             backgroundColor={'#ffffff'}
             chatPaneShadow = {'0 4px 15px rgba(0, 0, 0, 0.0)'}
-            inputBorderColor = {'#ffffff'}
+            inputBorderColor = {'#ccc'}
             sendButtonColor = {'#0071EB'}
             sendButtonHoverColor = {'#005bb5'}
         />
