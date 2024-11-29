@@ -19,6 +19,7 @@ import { GlobalProvider } from './context/GlobalContext';
 
 import './App.css';
 import Assistant from './pages/Assistant/Assistant';
+import PDFConverter from './pages/PDFConverter/PDFConverter';
 
 
 const App: React.FC = () => {
@@ -32,6 +33,7 @@ const App: React.FC = () => {
             <Route path="/contact" element={<Contact />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/assistant" element={<Assistant />} />
+            <Route path="/api/pdf-converter" element={<PDFConverter />} />
             {/* Add more routes as needed */}
           </Routes>
         </Layout>

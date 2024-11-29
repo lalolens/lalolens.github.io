@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "@lalolens/chat": "github:lalolens/laloJS#build"
+  },
+  "devDependencies": {
+    "jspdf": "^2.5.2"
   }
 }
